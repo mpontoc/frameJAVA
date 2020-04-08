@@ -1,0 +1,48 @@
+version: "3"
+services:
+  selenium-hub:
+    image: selenium/hub
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+  chrome:
+    image: selenium/node-chrome-debug
+    container_name: node-chrome-debug
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5901:5900"
+  firefox:
+    image: selenium/node-firefox-debug
+    container_name: node-firefox-debug
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=selenium-hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - "5902:5900"
+      
+  # Using Appium Docker Android  
+  real_device:
+    image: appium/appium
+    depends_on:
+      - selenium-hub
+    network_mode: "service:selenium-hub"
+    privileged: true
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
+      - ~/.android:/root/.android
+      - $PWD/example/sample_apk:/root/tmp
+    environment:
+      - CONNECT_TO_GRID=true
+      - SELENIUM_HOST=selenium-hub
+      # Enable it for msite testing
+      #- BROWSER_NAME=chrome

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.sp.mpontoc.runner.main.Runner" time="0.079" tests="30" errors="13" skipped="17" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\bin"/>
+    <property name="java.vm.version" value="25.241-b07"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:/gitPublico/frameJAVA"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="BR"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\gitPublico\frameJAVA"/>
+    <property name="java.runtime.version" value="1.8.0_241-b07"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\familia\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="classworlds.conf" value="C:/ProgramData/chocolatey/lib/maven/apache-maven-3.6.3/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_241\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\familia\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\familia\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_231\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.3\bin;C:\Program Files\Git\cmd;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Microsoft VS Code\bin;C:\Users\familia\AppData\Local\Android\Sdk\tools;C:\Users\familia\AppData\Local\Android\Sdk\tools\bin;C:\Users\familia\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\Java\jdk1.8.0_241\bin;C:\Ruby26-x64\bin;C:\Users\familia\AppData\Local\Microsoft\WindowsApps;C:\tools\mysql\current\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
+    <property name="maven.conf" value="C:/ProgramData/chocolatey/lib/maven/apache-maven-3.6.3/conf"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.0"/>
+    <property name="library.jansi.path" value="C:/ProgramData/chocolatey/lib/maven/apache-maven-3.6.3/lib/jansi-native"/>
+    <property name="user.home" value="C:\Users\familia"/>
+    <property name="user.timezone" value="America/Sao_Paulo"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="familia"/>
+    <property name="java.class.path" value="C:/ProgramData/chocolatey/lib/maven/apache-maven-3.6.3/boot/plexus-classworlds-2.6.0.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_241\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="pt"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_241"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_241\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_241\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_241\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.3"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="Dado que eu estou na tela do google" classname="Cenario: Consulta Java Google" time="0.009">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ✽.Dado que eu estou na tela do google(aprenderCucumber.feature:9)
+</error>
+    <system-out><![CDATA[# language: pt
+@consultaGoogle
+Funcionalidade: Consultas no Google
+C:\gitPublico\frameJAVA\src\test\resources\apk\original.apk
+Não foi possível conectar ao Appium
+test
+]]></system-out>
+    <system-err><![CDATA[org.openqa.selenium.WebDriverException: Connection refused: connect
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-U17N404', ip: '10.206.9.43', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: AndroidDriver
+	at io.appium.java_client.remote.AppiumCommandExecutor.lambda$5(AppiumCommandExecutor.java:251)
+	at java.util.Optional.orElseGet(Optional.java:267)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:250)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at io.appium.java_client.DefaultGenericMobileDriver.execute(DefaultGenericMobileDriver.java:41)
+	at io.appium.java_client.AppiumDriver.execute(AppiumDriver.java:1)
+	at io.appium.java_client.android.AndroidDriver.execute(AndroidDriver.java:1)
+	at org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:213)
+	at io.appium.java_client.AppiumDriver.startSession(AppiumDriver.java:336)
+	at org.openqa.selenium.remote.RemoteWebDriver.<init>(RemoteWebDriver.java:131)
+	at io.appium.java_client.DefaultGenericMobileDriver.<init>(DefaultGenericMobileDriver.java:37)
+	at io.appium.java_client.AppiumDriver.<init>(AppiumDriver.java:88)
+	at io.appium.java_client.AppiumDriver.<init>(AppiumDriver.java:98)
+	at io.appium.java_client.android.AndroidDriver.<init>(AndroidDriver.java:94)
+	at br.sp.mpontoc.commons.DriverInit.createDriver(DriverInit.java:131)
+	at br.sp.mpontoc.commons.DriverInit.<init>(DriverInit.java:152)
+	at br.sp.mpontoc.commons.PageHub.<clinit>(PageHub.java:7)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at cucumber.runtime.java.DefaultJavaObjectFactory.cacheNewInstance(DefaultJavaObjectFactory.java:41)
+	at cucumber.runtime.java.DefaultJavaObjectFactory.getInstance(DefaultJavaObjectFactory.java:33)
+	at cucumber.runtime.java.JavaStepDefinition.execute(JavaStepDefinition.java:38)
+	at cucumber.runtime.StepDefinitionMatch.runStep(StepDefinitionMatch.java:37)
+	at cucumber.runtime.Runtime.runStep(Runtime.java:300)
+	at cucumber.runtime.model.StepContainer.runStep(StepContainer.java:44)
+	at cucumber.runtime.model.StepContainer.runSteps(StepContainer.java:39)
+	at cucumber.runtime.model.CucumberScenario.run(CucumberScenario.java:44)
+	at cucumber.runtime.junit.ExecutionUnitRunner.run(ExecutionUnitRunner.java:102)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:63)
+	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:18)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:70)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:95)
+	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:38)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at cucumber.api.junit.Cucumber.run(Cucumber.java:100)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:283)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:173)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:128)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:203)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:155)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:606)
+	at okhttp3.internal.platform.Platform.connectSocket(Platform.java:129)
+	at okhttp3.internal.connection.RealConnection.connectSocket(RealConnection.java:245)
+	at okhttp3.internal.connection.RealConnection.connect(RealConnection.java:165)
+	at okhttp3.internal.connection.StreamAllocation.findConnection(StreamAllocation.java:257)
+	at okhttp3.internal.connection.StreamAllocation.findHealthyConnection(StreamAllocation.java:135)
+	at okhttp3.internal.connection.StreamAllocation.newStream(StreamAllocation.java:114)
+	at okhttp3.internal.connection.ConnectInterceptor.intercept(ConnectInterceptor.java:42)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:147)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:121)
+	at okhttp3.internal.cache.CacheInterceptor.intercept(CacheInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:147)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:121)
+	at okhttp3.internal.http.BridgeInterceptor.intercept(BridgeInterceptor.java:93)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:147)
+	at okhttp3.internal.http.RetryAndFollowUpInterceptor.intercept(RetryAndFollowUpInterceptor.java:126)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:147)
+	at okhttp3.internal.http.RealInterceptorChain.proceed(RealInterceptorChain.java:121)
+	at okhttp3.RealCall.getResponseWithInterceptorChain(RealCall.java:200)
+	at okhttp3.RealCall.execute(RealCall.java:77)
+	at org.openqa.selenium.remote.internal.OkHttpClient.execute(OkHttpClient.java:103)
+	at org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:105)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at io.appium.java_client.remote.AppiumCommandExecutor$1.createSession(AppiumCommandExecutor.java:186)
+	at io.appium.java_client.remote.AppiumCommandExecutor.createSession(AppiumCommandExecutor.java:217)
+	at io.appium.java_client.remote.AppiumCommandExecutor.execute(AppiumCommandExecutor.java:239)
+	... 53 more
+]]></system-err>
+  </testcase>
+  <testcase name="Dado que eu estou na tela do google" classname="Cenario: Consulta Java Google" time="0">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ✽.Dado que eu estou na tela do google(aprenderCucumber.feature:16)
+</error>
+    <system-out><![CDATA[
+  @Test
+  Cenario: Consulta Java Google           # aprenderCucumber.feature:7
+    Dado que eu estou na tela do google   # Consulta_Steps.que_eu_estou_na_tela_do_google()
+      java.lang.NullPointerException
+      	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+      	at ?.Dado que eu estou na tela do google(aprenderCucumber.feature:9)
+
+    Quando eu busco por java e muito bom  # Consulta_Steps.eu_busco_por_java_e_muito_bom()
+    Entao eu encontro diversos resultados # Consulta_Steps.eu_encontro_diversos_resultados()
+test
+]]></system-out>
+  </testcase>
+  <testcase name="Cenario: Consulta Java Google" classname="Cenario: Consulta Java Google" time="0.014">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ✽.Dado que eu estou na tela do google(aprenderCucumber.feature:9)
+</error>
+  </testcase>
+  <testcase name="Cenario: Consulta Java Google" classname="Cenario: Consulta Java Google" time="0.001">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ✽.Dado que eu estou na tela do google(aprenderCucumber.feature:16)
+</error>
+  </testcase>
+  <testcase name="Quando eu busco por java e muito bom" classname="Cenario: Consulta Java Google" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Quando eu busco por java e muito bom" classname="Cenario: Consulta Java Google" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Entao eu encontro diversos resultados" classname="Cenario: Consulta Java Google" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Entao eu encontro diversos resultados" classname="Cenario: Consulta Java Google" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="E rodo pelo mvn" classname="Cenario: Consulta Java Google" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Dado que eu estou na tela do &quot;http://www.gmail.com&quot;" classname="| http://www.gmail.com |" time="0.002">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.gmail.com"(aprenderCucumber.feature:25)
+</error>
+    <system-out><![CDATA[
+  @Test1
+  Cenario: Consulta Java Google           # aprenderCucumber.feature:14
+    Dado que eu estou na tela do google   # Consulta_Steps.que_eu_estou_na_tela_do_google()
+      java.lang.NullPointerException
+      	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+      	at ?.Dado que eu estou na tela do google(aprenderCucumber.feature:16)
+
+    Quando eu busco por java e muito bom  # Consulta_Steps.eu_busco_por_java_e_muito_bom()
+    Entao eu encontro diversos resultados # Consulta_Steps.eu_encontro_diversos_resultados()
+    E rodo pelo mvn                       # Consulta_Steps.rodo_pelo_mvn()
+
+  @Test2
+  Esquema do Cenario: Consulta Java Google grid # aprenderCucumber.feature:23
+    Dado que eu estou na tela do "<site>"
+    Quando eu busco por java e muito bom
+    Entao eu encontro diversos resultados
+    E rodo pelo mvn
+
+    Exemplos: 
+]]></system-out>
+  </testcase>
+  <testcase name="| http://www.gmail.com |" classname="| http://www.gmail.com |" time="0.003">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.gmail.com"(aprenderCucumber.feature:25)
+</error>
+  </testcase>
+  <testcase name="Quando eu busco por java e muito bom" classname="| http://www.gmail.com |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Entao eu encontro diversos resultados" classname="| http://www.gmail.com |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="E rodo pelo mvn" classname="| http://www.gmail.com |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Dado que eu estou na tela do &quot;http://www.ig.com.br&quot;" classname="| http://www.ig.com.br |" time="0.001">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.ig.com.br"(aprenderCucumber.feature:25)
+</error>
+    <system-out><![CDATA[
+  @consultaGoogle @Test2
+  Esquema do Cenario: Consulta Java Google grid         # aprenderCucumber.feature:33
+    Dado que eu estou na tela do "http://www.gmail.com" # Consulta_Steps.que_eu_estou_na_tela_do(String)
+      java.lang.NullPointerException
+      	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+      	at ?.Dado que eu estou na tela do "http://www.gmail.com"(aprenderCucumber.feature:25)
+
+    Quando eu busco por java e muito bom                # Consulta_Steps.eu_busco_por_java_e_muito_bom()
+    Entao eu encontro diversos resultados               # Consulta_Steps.eu_encontro_diversos_resultados()
+    E rodo pelo mvn                                     # Consulta_Steps.rodo_pelo_mvn()
+]]></system-out>
+  </testcase>
+  <testcase name="| http://www.ig.com.br |" classname="| http://www.ig.com.br |" time="0.001">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.ig.com.br"(aprenderCucumber.feature:25)
+</error>
+  </testcase>
+  <testcase name="Quando eu busco por java e muito bom" classname="| http://www.ig.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Entao eu encontro diversos resultados" classname="| http://www.ig.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="E rodo pelo mvn" classname="| http://www.ig.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Dado que eu estou na tela do &quot;http://www.bol.com.br&quot;" classname="| http://www.bol.com.br |" time="0.001">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.bol.com.br"(aprenderCucumber.feature:25)
+</error>
+    <system-out><![CDATA[
+  @consultaGoogle @Test2
+  Esquema do Cenario: Consulta Java Google grid         # aprenderCucumber.feature:34
+    Dado que eu estou na tela do "http://www.ig.com.br" # Consulta_Steps.que_eu_estou_na_tela_do(String)
+      java.lang.NullPointerException
+      	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+      	at ?.Dado que eu estou na tela do "http://www.ig.com.br"(aprenderCucumber.feature:25)
+
+    Quando eu busco por java e muito bom                # Consulta_Steps.eu_busco_por_java_e_muito_bom()
+    Entao eu encontro diversos resultados               # Consulta_Steps.eu_encontro_diversos_resultados()
+    E rodo pelo mvn                                     # Consulta_Steps.rodo_pelo_mvn()
+]]></system-out>
+  </testcase>
+  <testcase name="| http://www.bol.com.br |" classname="| http://www.bol.com.br |" time="0.002">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.bol.com.br"(aprenderCucumber.feature:25)
+</error>
+  </testcase>
+  <testcase name="Quando eu busco por java e muito bom" classname="| http://www.bol.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Entao eu encontro diversos resultados" classname="| http://www.bol.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="E rodo pelo mvn" classname="| http://www.bol.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Dado que eu estou na tela do &quot;http://www.submarino.com.br&quot;" classname="| http://www.submarino.com.br |" time="0.002">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.submarino.com.br"(aprenderCucumber.feature:25)
+</error>
+    <system-out><![CDATA[
+  @consultaGoogle @Test2
+  Esquema do Cenario: Consulta Java Google grid          # aprenderCucumber.feature:35
+    Dado que eu estou na tela do "http://www.bol.com.br" # Consulta_Steps.que_eu_estou_na_tela_do(String)
+      java.lang.NullPointerException
+      	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+      	at ?.Dado que eu estou na tela do "http://www.bol.com.br"(aprenderCucumber.feature:25)
+
+    Quando eu busco por java e muito bom                 # Consulta_Steps.eu_busco_por_java_e_muito_bom()
+    Entao eu encontro diversos resultados                # Consulta_Steps.eu_encontro_diversos_resultados()
+    E rodo pelo mvn                                      # Consulta_Steps.rodo_pelo_mvn()
+]]></system-out>
+  </testcase>
+  <testcase name="| http://www.submarino.com.br |" classname="| http://www.submarino.com.br |" time="0.01">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ✽.Dado que eu estou na tela do "http://www.submarino.com.br"(aprenderCucumber.feature:25)
+</error>
+  </testcase>
+  <testcase name="Quando eu busco por java e muito bom" classname="| http://www.submarino.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="Entao eu encontro diversos resultados" classname="| http://www.submarino.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="E rodo pelo mvn" classname="| http://www.submarino.com.br |" time="0">
+    <skipped/>
+  </testcase>
+  <testcase name="br.sp.mpontoc.runner.main.Runner" classname="br.sp.mpontoc.runner.main.Runner" time="0.034">
+    <error type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at br.sp.mpontoc.commons.Functions.finalizaExecucao(Functions.java:105)
+	at br.sp.mpontoc.runner.main.Runner.tearDown(Runner.java:34)
+</error>
+    <system-out><![CDATA[
+  @consultaGoogle @Test2
+  Esquema do Cenario: Consulta Java Google grid                # aprenderCucumber.feature:36
+    Dado que eu estou na tela do "http://www.submarino.com.br" # Consulta_Steps.que_eu_estou_na_tela_do(String)
+      java.lang.NullPointerException
+      	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+      	at ?.Dado que eu estou na tela do "http://www.submarino.com.br"(aprenderCucumber.feature:25)
+
+    Quando eu busco por java e muito bom                       # Consulta_Steps.eu_busco_por_java_e_muito_bom()
+    Entao eu encontro diversos resultados                      # Consulta_Steps.eu_encontro_diversos_resultados()
+    E rodo pelo mvn                                            # Consulta_Steps.rodo_pelo_mvn()
+]]></system-out>
+  </testcase>
+</testsuite>

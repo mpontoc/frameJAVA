@@ -1,0 +1,34 @@
+#Comando para criar o container selenium-hf
+
+docker build -t selenium-hf .
+
+#Comando para rodar os containers no selenium-grid zalenium
+
+docker-compose -p grid up --force-recreate --abort-on-container-exit
+
+#Comando para subir serviços no docker-compose
+
+docker-compose up -d
+
+#Comando para suber docker-compose diferente do padrão
+
+docker-compose -f docker-compose-debug.yml up --force-recreate
+ 
+#Comando para rodar os container
+
+docker-compose up
+
+#To delete all containers including its volumes use,
+
+docker rm -vf $(docker ps -a -q)
+
+#To delete all the images,
+
+docker rmi -f $(docker images -a -q)
+
+#To dele all cache
+
+docker system prune -a
+
+
+

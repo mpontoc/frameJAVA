@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------
+Test set: br.sp.mpontoc.runner.main.Runner
+-------------------------------------------------------------------------------
+Tests run: 30, Failures: 0, Errors: 13, Skipped: 17, Time elapsed: 11.471 sec <<< FAILURE! - in br.sp.mpontoc.runner.main.Runner
+Dado que eu estou na tela do google(Cenario: Consulta Java Google)  Time elapsed: 0.009 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ?.Dado que eu estou na tela do google(aprenderCucumber.feature:9)
+
+Cenario: Consulta Java Google  Time elapsed: 0.014 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ?.Dado que eu estou na tela do google(aprenderCucumber.feature:9)
+
+Dado que eu estou na tela do google(Cenario: Consulta Java Google)  Time elapsed: 0 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ?.Dado que eu estou na tela do google(aprenderCucumber.feature:16)
+
+Cenario: Consulta Java Google  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do_google(Consulta_Steps.java:18)
+	at ?.Dado que eu estou na tela do google(aprenderCucumber.feature:16)
+
+Dado que eu estou na tela do "http://www.gmail.com"(| http://www.gmail.com |)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.gmail.com"(aprenderCucumber.feature:25)
+
+| http://www.gmail.com |  Time elapsed: 0.003 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.gmail.com"(aprenderCucumber.feature:25)
+
+Dado que eu estou na tela do "http://www.ig.com.br"(| http://www.ig.com.br |)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.ig.com.br"(aprenderCucumber.feature:25)
+
+| http://www.ig.com.br |  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.ig.com.br"(aprenderCucumber.feature:25)
+
+Dado que eu estou na tela do "http://www.bol.com.br"(| http://www.bol.com.br |)  Time elapsed: 0.001 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.bol.com.br"(aprenderCucumber.feature:25)
+
+| http://www.bol.com.br |  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.bol.com.br"(aprenderCucumber.feature:25)
+
+Dado que eu estou na tela do "http://www.submarino.com.br"(| http://www.submarino.com.br |)  Time elapsed: 0.002 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.submarino.com.br"(aprenderCucumber.feature:25)
+
+| http://www.submarino.com.br |  Time elapsed: 0.01 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.steps.Consulta_Steps.que_eu_estou_na_tela_do(Consulta_Steps.java:31)
+	at ?.Dado que eu estou na tela do "http://www.submarino.com.br"(aprenderCucumber.feature:25)
+
+br.sp.mpontoc.runner.main.Runner  Time elapsed: 0.034 sec  <<< ERROR!
+java.lang.NullPointerException: null
+	at br.sp.mpontoc.commons.Functions.finalizaExecucao(Functions.java:105)
+	at br.sp.mpontoc.runner.main.Runner.tearDown(Runner.java:34)
+

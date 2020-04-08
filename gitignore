@@ -1,0 +1,66 @@
+/log/
+/lib/evidences/
+
+**/pom.xml.versionsBackup
+.vscode
+/.project
+
+# Eclipse e Maven
+target
+target/
+/target/
+/target
+target/*
+**/target/**
+bin/
+/bin/
+build/
+/build/
+.settings
+/.settings*
+.project
+/.project
+.classpath
+/.classpath
+.factorypath
+.prefs
+.orig
+node_modules
+node_modules/*
+dependency-reduced-pom.xml
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+.serverless
+.serverless/
+
+# IntelliJ #
+.idea
+
+# Report #
+output/
+/output/
+/output
+**/output/**
+
+squad-ec/${sys
+squad-pc/${sys
+squad-pf/${sys
+squad-pj/${sys

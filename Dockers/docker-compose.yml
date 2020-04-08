@@ -1,0 +1,35 @@
+version: '2'
+services:
+  firefox:
+    image: selenium/node-firefox
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+  chrome:
+    image: selenium/node-chrome
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - hub
+    environment:
+      HUB_HOST: hub
+  hub:
+    image: selenium/hub
+    ports:
+      - "4444:4444"
+  jautomators:
+    build:
+      context: .
+      dockerfile: Dockerfile  
+    volumes: 
+      - /user/temp:/app/target/reports
+    depends_on:
+      - hub
+    links:
+      - hub
+networks: 
+  webnar:
+    driver: bridge
