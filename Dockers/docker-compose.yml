@@ -1,35 +1,67 @@
-version: '2'
+# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
+# Add the `-d` flag at the end for detached execution
+version: "2"
 services:
-  firefox:
-    image: selenium/node-firefox
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      HUB_HOST: hub
-  chrome:
-    image: selenium/node-chrome
-    volumes:
-      - /dev/shm:/dev/shm
-    depends_on:
-      - hub
-    environment:
-      HUB_HOST: hub
   hub:
     image: selenium/hub
+    container_name: selenium-hub
     ports:
       - "4444:4444"
-  jautomators:
-    build:
-      context: .
-      dockerfile: Dockerfile  
-    volumes: 
-      - /user/temp:/app/target/reports
+    volumes:
+      - /dev/shm:/dev/shm
+      - /user/temp:/app/
+
+  chrome:
+    image: selenium/node-chrome
     depends_on:
       - hub
-    links:
+    privileged: true
+    environment:
+      - DEBUG=false
+      - PICK_ALL_RANDOM_PORTS=true
+      - SELENIUM_NODE_HOST={{CONTAINER_IP}}
+      - SCREEN_WIDTH=1300
+      - SCREEN_HEIGHT=999
+      - GRID=false
+      - CHROME=true
+      - FIREFOX=false
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=3
+      - NODE_MAX_SESSION=3
+    volumes:
+      - /dev/shm:/dev/shm
+      - /user/temp:/app/
+
+  firefox:
+    image: selenium/node-firefox
+    depends_on:
       - hub
-networks: 
-  webnar:
-    driver: bridge
+    environment:
+      - DEBUG=false
+      - PICK_ALL_RANDOM_PORTS=true
+      - SELENIUM_NODE_HOST={{CONTAINER_IP}}
+      - SCREEN_WIDTH=1300
+      - SCREEN_HEIGHT=999
+      - GRID=false
+      - CHROME=false
+      - FIREFOX=true
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NODE_MAX_INSTANCES=3
+      - NODE_MAX_SESSION=3
+    volumes:
+      - /dev/shm:/dev/shm
+      - /user/temp:/app/
+    privileged: true
+
+#  newframejava:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    volumes: 
+#      - /dev/shm:/dev/shm
+#      - /user/temp:/app/target/reports
+#    privileged: true  
+#    depends_on:
+#      - hub
