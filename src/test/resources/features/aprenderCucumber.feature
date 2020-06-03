@@ -10,6 +10,14 @@ Dado que eu estou na tela do google
 Quando eu busco por java e muito bom
 Entao eu encontro diversos resultados
 
+@Test11
+Cenario: Consulta Java Google
+
+Dado que eu estou na tela do uol
+Quando eu busco por java e muito bom
+Entao eu encontro diversos resultados
+
+
 @Test1
 Cenario: Consulta Java Google
 
@@ -34,5 +42,4 @@ Exemplos:
 |http://www.ig.com.br                          |
 |http://www.bol.com.br                         |
 |http://www.submarino.com.br                   |
-
 

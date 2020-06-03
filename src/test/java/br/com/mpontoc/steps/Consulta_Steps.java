@@ -1,62 +1,85 @@
 package br.com.mpontoc.steps;
 
-import static br.com.mpontoc.commons.PageHub.driver;
-
-import org.junit.Assert;
-
+import br.com.mpontoc.commons.Functions;
+import br.com.mpontoc.commons.Selenium;
 import io.cucumber.core.api.Scenario;
-import io.cucumber.java.Before;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.BeforeStep;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import org.junit.Assert;
+
+import static br.com.mpontoc.commons.BaseTest.driver;
+import static br.com.mpontoc.commons.Selenium.waitExistClick;
+import static br.com.mpontoc.commons.Selenium.waitSecunds;
 
 public class Consulta_Steps {
 
-	@Before
-	public void setUp(Scenario scenario) {
-		
-		
-	}
-	
-	@Dado("^que eu estou na tela do google$")
-	public void que_eu_estou_na_tela_do_google() throws Throwable {
-		System.out.println("test");
+    @BeforeStep("@consultaGoogle")
+    public void reportClear(Scenario scenario) {
+        Selenium.isFirstRun = true;
+    }
 
-		driver.get("http://www.uol.com.br");
+    @AfterStep("@consultaGoogle")
+    public void report(Scenario scenario) {
+        Selenium.printScreenAfterStep(scenario);
+        Selenium.writeReportAfterStep(scenario);
+    }
 
-		Thread.sleep(2000);
+    @Dado("que eu estou na tela do google")
+    public void que_eu_estou_na_tela_do_google() {
 
-		System.out.println(driver.getCurrentUrl().toString());
-	}
+        if (Functions.verificaFeriado() == true)
+            System.out.println("Hoje é feriado");
+        else
+            System.out.println("Hoje não é feriado");
 
-	@Dado("^que eu estou na tela do \"([^\"]*)\"$")
-	public void que_eu_estou_na_tela_do(String site) throws Throwable {
+        System.out.println("test");
 
-		Thread.sleep(2000);
+        driver.get("http://www.uol.com.br");
 
-		driver.navigate().to(site);
+        waitSecunds(2);
 
-		Thread.sleep(2000);
+        System.out.println(driver.getCurrentUrl().toString());
 
-		System.out.println(driver.getCurrentUrl().toString());
-	}
+        waitExistClick("//span[contains(.,'Economia')]", 3, true);
 
-	@Quando("^eu busco por java e muito bom$")
-	public void eu_busco_por_java_e_muito_bom() throws Throwable {
-		System.out.println("test1");
-	}
+        System.out.println(driver.getCurrentUrl().toString());
 
-	@Entao("^eu encontro diversos resultados$")
-	public void eu_encontro_diversos_resultados() throws Throwable {
-		System.out.println("test3");
-	}
+        Selenium.cucumberReport("Este é o titulo da url " + driver.getCurrentUrl().toString());
+    }
 
-	@Entao("^rodo pelo mvn$")
-	public void rodo_pelo_mvn() throws Throwable {
-		String a = "teste automatizado";
-		Assert.assertTrue(a.contains("teste"));
-		Assert.assertEquals(a, "teste automatizado");
-		System.out.println(a);
-	}
+    @Dado("que eu estou na tela do {string}")
+    public void que_eu_estou_na_tela_do(String site) {
+
+        waitSecunds(2);
+
+        driver.navigate().to(site);
+
+        waitSecunds(2);
+
+        System.out.println(driver.getCurrentUrl().toString());
+    }
+
+    @Quando("eu busco por java e muito bom")
+    public void eu_busco_por_java_e_muito_bom() {
+        System.out.println("test1");
+        String textoObtido = Selenium.waitExistGetText("//h4[contains(.,'Economia') or (contains(.,'Líderes'))]", 4);
+        System.out.println("Texto Obtido nos steps " + textoObtido);
+    }
+
+    @Entao("eu encontro diversos resultados")
+    public void eu_encontro_diversos_resultados() {
+        System.out.println("test3");
+    }
+
+    @Entao("rodo pelo mvn")
+    public void rodo_pelo_mvn() {
+        String a = "teste automatizado";
+        Assert.assertTrue(a.contains("teste"));
+        Assert.assertEquals(a, "teste automatizado");
+        System.out.println(a);
+    }
 
 }

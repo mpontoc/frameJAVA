@@ -1,0 +1,7 @@
+FROM appium/appium:latest
+
+#RUN mkdir /app
+#WORKDIR /app/
+COPY /src/test/resources/apk/original.apk /root/tmp/
+
+#CMD mvn test

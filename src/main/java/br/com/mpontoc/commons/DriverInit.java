@@ -1,4 +1,4 @@
- package br.com.mpontoc.commons;
+package br.com.mpontoc.commons;
 
 import java.io.File;
 import java.net.URL;
@@ -13,147 +13,202 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class DriverInit {
 
 	private WebDriver driver;
 
-	@SuppressWarnings("rawtypes")
 	public void createDriver() {
 
 		String Browser = Setup.getProp("browser");
+		String BROWSER_ENV = System.getenv("BROWSER");
 		String baseURL = Setup.getProp("baseURL");
+		String userName = "mpontoc1";
+		String accessKey = "NbqM27aR3TxXZzee4nxr";
+
+		if (BROWSER_ENV != null) {
+			Browser = BROWSER_ENV;
+			System.out.println(Browser);
+			System.out.println(BROWSER_ENV);
+		}
 
 		switch (Browser) {
-		
+
+		case "firefox":
+
+			try {
+				Functions.setPropDriver();
+				FirefoxOptions optionsFirefox = new FirefoxOptions();
+				optionsFirefox.addArguments("--width=1024");
+				optionsFirefox.addArguments("--height=768");
+				optionsFirefox.addArguments("--start-maximized");
+				driver = new FirefoxDriver(optionsFirefox);
+				Thread.sleep(1000);
+				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+			} catch (Exception e2) {
+				System.out.println("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				e2.printStackTrace();
+			}
+
+			break;
+
 		case "firefox-headless":
 
 			try {
 				Functions.setPropDriver();
-				FirefoxOptions options = new FirefoxOptions();
-				options.setHeadless(true);
-				driver = new FirefoxDriver(options);
-				Thread.sleep(2000);
-			} catch (InterruptedException e1) {
-				
-				System.out.println("Problema para rodar em headless");
-				// TODO Auto-generated catch block
+				FirefoxOptions optHeadlessFirefox = new FirefoxOptions();
+				optHeadlessFirefox.setHeadless(true);
+				optHeadlessFirefox.addArguments("--width=1024");
+				optHeadlessFirefox.addArguments("--height=768");
+				driver = new FirefoxDriver(optHeadlessFirefox);
+				Thread.sleep(1000);
+				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+			} catch (Exception e1) {
+				System.out.println("Problema para rodar com firefox headless");
 				e1.printStackTrace();
 			}
-		
-		break;
-		
-		case "firefox-remote":
+
+			break;
+
+		case "firefox-hub":
 
 			try {
 				DesiredCapabilities cap = new DesiredCapabilities();
 				cap.setBrowserName("firefox");
 				cap.setPlatform(Platform.LINUX);
-				// Chrome option
-				FirefoxOptions options = new FirefoxOptions();
-				options.merge(cap);
-				options.setHeadless(true);
-				// Capabilities chromeCapabilities = DesiredCapabilities.chrome();
-				driver = new RemoteWebDriver(new URL(baseURL), options);
-				Thread.sleep(10000);
+				FirefoxOptions optRemoteFirefox = new FirefoxOptions();
+				optRemoteFirefox.merge(cap);
+				optRemoteFirefox.setHeadless(true);
+				optRemoteFirefox.addArguments("--width=1024");
+				optRemoteFirefox.addArguments("--height=768");
+				driver = new RemoteWebDriver(new URL(baseURL), optRemoteFirefox);
+				Thread.sleep(2000);
+				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
 				driver.get(baseURL);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				System.out.println("Não foi possível conectar o selenium hub firefox");
 				e.printStackTrace();
 			}
-			/*
-			 * FirefoxBinary firefoxBinary = new FirefoxBinary();
-			 * firefoxBinary.addCommandLineOptions("--headless"); FirefoxOptions
-			 * firefoxOptions = new FirefoxOptions();
-			 * firefoxOptions.setBinary(firefoxBinary); driver = new
-			 * FirefoxDriver(firefoxOptions);
-			 */
-			break;
-
-		case "chrome-remote":
-			
-			try {
-				DesiredCapabilities cap = new DesiredCapabilities();
-				cap.setBrowserName("chrome");
-				cap.setPlatform(Platform.LINUX);
-				// Chrome option
-				ChromeOptions options = new ChromeOptions();
-				options.merge(cap);
-				options.setHeadless(true);
-				// Capabilities chromeCapabilities = DesiredCapabilities.chrome();
-				driver = new RemoteWebDriver(new URL(baseURL), options);
-				Thread.sleep(30000);
-				driver.get(baseURL);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				System.out.println("Não foi possível conectar o selenium hub chrome");
-				e.printStackTrace();
-			}
-			/*
-			 * ChromeOptions options = new ChromeOptions();
-			 * options.addArguments("headless");
-			 * options.addArguments("window-size=1200x600"); driver = new
-			 * ChromeDriver(options);
-			 */
 			break;
 
 		case "chrome":
 
-			Functions.setPropDriver();
-
-			driver = new ChromeDriver();
-
+			try {
+				Functions.setPropDriver();
+				ChromeOptions optionsChrome = new ChromeOptions();
+				optionsChrome.addArguments("--window-size=1024,768");
+				driver = new ChromeDriver(optionsChrome);
+				Thread.sleep(1000);
+				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+			} catch (Exception e1) {
+				System.out.println("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				e1.printStackTrace();
+			}
 			break;
 
-		case "firefox":
+		case "chrome-headless":
 
-			Functions.setPropDriver();
-
-			driver = new FirefoxDriver();
-
+			try {
+				Functions.setPropDriver();
+				ChromeOptions optHeadlessChrome = new ChromeOptions();
+				optHeadlessChrome.setHeadless(true);
+				optHeadlessChrome.addArguments("--window-size=1024,768");
+				// optHeadlessChrome.addArguments("--log-level=3");
+				driver = new ChromeDriver(optHeadlessChrome);
+				Thread.sleep(1000);
+				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+			} catch (Exception e1) {
+				System.out.println("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				e1.printStackTrace();
+			}
 			break;
-			
-		case "mobile":
-			
+
+		case "chrome-hub":
+
 			try {
 				DesiredCapabilities cap = new DesiredCapabilities();
-				
-			    cap.setCapability("platformName", "Android");
-			    cap.setCapability("deviceName", "emulator-5554 ");
-			    cap.setCapability("automationName", "uiautomator2");
-		//	    cap.setCapability("appPackage", "com.android.calculator2");
-		//	    cap.setCapability("appActivity", "com.android.calculator2.Calculator");
-			    
-		//	    cap.setCapability("deviceName", "Android Emulator");
-
-			    String caminhoAPK = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + 
-			    		"resources" + File.separator + "apk" + File.separator + "original.apk" 
-			    		;
-			    
-			    System.out.println(caminhoAPK);
-			    
-			    //passar o apk para ser instalado no momento da execução
-				cap.setCapability(MobileCapabilityType.APP, caminhoAPK);
-			
-				URL urlAppium = new URL ("http://127.0.1:4723/wd/hub");
-
-//				driver = new AppiumDriver<MobileElement>(urlAppium, cap);
-				driver = new AndroidDriver(urlAppium, cap);
-				
-				Thread.sleep(5000);
-				//driver.get(baseURL);
+				cap.setBrowserName("chrome");
+				cap.setPlatform(Platform.LINUX);
+				ChromeOptions optRemoteChrome = new ChromeOptions();
+				optRemoteChrome.merge(cap);
+				optRemoteChrome.setHeadless(true);
+				optRemoteChrome.addArguments("--window-size=1024,768");
+				driver = new RemoteWebDriver(new URL(baseURL), optRemoteChrome);
+				Thread.sleep(2000);
+				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+				driver.get(baseURL);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				System.out.println("Não foi possível conectar o selenium hub chrome");
 				e.printStackTrace();
-				System.out.println("Não foi possível conectar ao Appium");
-			
+			}
 			break;
 
+		case "mobile":
+
+			try {
+				DesiredCapabilities caps = new DesiredCapabilities();
+				caps.setCapability("platformName", "Android");
+				caps.setCapability("deviceName", "emulator-5554");
+				caps.setCapability("automationName", "uiautomator2");
+				// cap.setCapability("appPackage", "com.android.calculator2");
+				// cap.setCapability("appActivity", "com.android.calculator2.Calculator");
+				String caminhoAPK = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test"
+						+ File.separator + "resources" + File.separator + "apk" + File.separator + "original.apk";
+				System.out.println(caminhoAPK);
+				// passar o apk para ser instalado no momento da execução
+				caps.setCapability(MobileCapabilityType.APP, caminhoAPK);
+				URL urlAppium = new URL("http://127.0.1:4723/wd/hub");
+				driver = new AndroidDriver<AndroidElement>(urlAppium, caps);
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Não foi possível conectar ao Appium");
 			}
-		}
+			break;
+
+		case "mobile-hub":
 			
+			try {
+				DesiredCapabilities caps = new DesiredCapabilities();
+				caps.setCapability("platformName", "Android");
+				caps.setCapability("deviceName", "Android Emulator");
+				caps.setCapability("automationName", "UIAutomator2");
+				caps.setCapability("avd", "nexus_5_7.1.1");
+				caps.setCapability("browserName", "android");
+				String caminhoAPK = "/root/tmp/original.apk"; 
+				System.out.println(caminhoAPK);
+				// passar o apk para ser instalado no momento da execução
+				caps.setCapability("app", caminhoAPK);
+				driver = new RemoteWebDriver(new URL(baseURL), caps);
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Não foi possível conectar ao Appium");
+			}
+			break;
+
+		case "mobile-remote":
+
+			try {
+				DesiredCapabilities caps = new DesiredCapabilities();
+				caps.setCapability("automationName", "uiautomator2");
+				caps.setCapability("device", "Samsung Galaxy S10e");
+				caps.setCapability("os_version", "9.0");
+				caps.setCapability("name", "Bstack-[Java] Sample Test");
+				caps.setCapability("app", "bs://31a0d7b4915c71b4e5ce5c10e536e1cf32afcb27");
+				driver = new AndroidDriver<AndroidElement>(
+						new URL("https://" + userName + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub"), caps);
+
+				Thread.sleep(3000);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Não foi possível conectar ao Appium Remote");
+			}
+			break;
+		}
+
 	}
 
 	public WebDriver getDriver() {

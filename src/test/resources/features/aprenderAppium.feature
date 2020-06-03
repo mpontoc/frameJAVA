@@ -1,10 +1,10 @@
 # language: pt
 @testAppium
 
-Funcionalidade: Validar Fluxos e Elementos CT_Appium
+Funcionalidade: Validar Fluxos e Elementos CT_Appium test
 
 @validaFormulario
-Cenario: Consulta Java Google
+Cenario: Consulta APK Aquino
 
 Dado que eu estou no device
 Quando eu abro o app CT_Appium

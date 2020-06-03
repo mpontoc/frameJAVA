@@ -1,0 +1,100 @@
+# Created by https://www.gitignore.io/api/java,java-web,code-java
+# Edit at https://www.gitignore.io/?templates=java,java-web,code-java
+
+### Code-Java ###
+# Language Support for Java(TM) by Red Hat extension for Visual Studio Code - https://marketplace.visualstudio.com/items?itemName=redhat.java
+
+.project
+.classpath
+.sts4-cache
+factoryConfiguration.json
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+*.iml
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+### Java-Web ###
+## ignoring target file
+target/
+
+/log/
+/lib/evidences/
+
+**/pom.xml.versionsBackup
+.vscode
+/.project
+
+# Eclipse e Maven
+target
+target/
+/target/
+/target
+target/*
+**/target/**
+!/target/test-classes/*
+bin/
+/bin/
+build/
+/build/
+.settings
+/.settings*
+.project
+/.project
+.classpath
+/.classpath
+.factorypath
+.prefs
+.orig
+node_modules
+node_modules/*
+dependency-reduced-pom.xml
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+.serverless
+.serverless/
+
+# IntelliJ #
+.idea
+
+*/runner
+*/resources
+
+# Report #
+output/
+/output/
+/output
+**/output/**
+cucumber-reports/
+/cucumber-reports/
+/cucumber-reports
+**cucumber-reports/**

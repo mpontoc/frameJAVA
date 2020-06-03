@@ -4,4 +4,4 @@ RUN mkdir /app
 WORKDIR /app/
 COPY . /app
 
-CMD mvn test
+#CMD mvn test

@@ -29,3 +29,14 @@ services:
       - /dev/shm:/dev/shm
     ports:
       - "5902:5900"
+  newTestFrame:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: mvn -Dcucumber.options="--tags @Test" test
+    volumes: 
+      - /dev/shm:/dev/shm
+      - /user/temp:/app/target/reports
+    privileged: true  
+    depends_on:
+      - selenium-hub

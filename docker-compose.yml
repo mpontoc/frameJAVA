@@ -1,67 +1,102 @@
-# To execute this docker-compose yml file use `docker-compose -f <file_name> up`
-# Add the `-d` flag at the end for detached execution
-version: "2"
+version: "3"
 services:
-  hub:
+  selenium_hub:
     image: selenium/hub
-    container_name: selenium-hub
+    container_name: selenium_hub
     ports:
       - "4444:4444"
-    volumes:
-      - /dev/shm:/dev/shm
-      - /user/temp:/app/
-
-  chrome:
-    image: selenium/node-chrome
-    depends_on:
-      - hub
-    privileged: true
-    environment:
-      - DEBUG=false
-      - PICK_ALL_RANDOM_PORTS=true
-      - SELENIUM_NODE_HOST={{CONTAINER_IP}}
-      - SCREEN_WIDTH=1300
-      - SCREEN_HEIGHT=999
-      - GRID=false
-      - CHROME=true
-      - FIREFOX=false
-      - HUB_HOST=selenium-hub
-      - HUB_PORT=4444
-      - NODE_MAX_INSTANCES=3
-      - NODE_MAX_SESSION=3
-    volumes:
-      - /dev/shm:/dev/shm
-      - /user/temp:/app/
-
+#  chrome:
+#   image: selenium/node-chrome-debug
+#   container_name: node-chrome-debug
+#   depends_on:
+#     - selenium_hub
+#   environment:
+#     - HUB_PORT_4444_TCP_ADDR=selenium_hub
+#     - HUB_PORT_4444_TCP_PORT=4444
+#     - NODE_MAX_INSTANCES=2
+#     - NODE_MAX_SESSION=2
+#   volumes:
+#     - /dev/shm:/dev/shm
+#   ports:
+#     - "5901:5900"
   firefox:
-    image: selenium/node-firefox
+    image: selenium/node-firefox-debug
+    container_name: node-firefox-debug
     depends_on:
-      - hub
+      - selenium_hub
     environment:
-      - DEBUG=false
-      - PICK_ALL_RANDOM_PORTS=true
-      - SELENIUM_NODE_HOST={{CONTAINER_IP}}
-      - SCREEN_WIDTH=1300
-      - SCREEN_HEIGHT=999
-      - GRID=false
-      - CHROME=false
-      - FIREFOX=true
-      - HUB_HOST=selenium-hub
-      - HUB_PORT=4444
-      - NODE_MAX_INSTANCES=3
-      - NODE_MAX_SESSION=3
+      - HUB_PORT_4444_TCP_ADDR=selenium_hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - NODE_MAX_INSTANCES=2
+      - NODE_MAX_SESSION=2
     volumes:
       - /dev/shm:/dev/shm
-      - /user/temp:/app/
-    privileged: true
+    ports:
+      - "5902:5900"
 
-#  newframejava:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    volumes: 
-#      - /dev/shm:/dev/shm
-#      - /user/temp:/app/target/reports
-#    privileged: true  
-#    depends_on:
-#      - hub
+  real_device:
+    image: appium/appium
+    depends_on:
+      - selenium_hub
+    build:
+      context: .
+      dockerfile: Dockerfile_APK      
+    network_mode: "service:selenium_hub"
+    privileged: true
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
+      - ~/.android:/root/.android
+      - ./src/test/resources/apk:/root/tmp/
+    environment:
+      - CONNECT_TO_GRID=true
+      - SELENIUM_HOST=selenium_hub
+      # Enable it for msite testing
+      #- BROWSER_NAME=chrome
+
+  # Docker-Android for Android application testing
+  nexus_7.1.1:
+    image: budtmo/docker-android-x86-7.1.1
+    privileged: true
+    depends_on:
+      - selenium_hub
+      - real_device
+    ports:
+      - 6080
+    # Change path of apk that you want to test. I use sample_apk that I provide in folder "example"
+    volumes:
+      - ./src/test/resources/apk:/root/tmp/
+      - ./video-nexus_7.1.1:/tmp/video
+    environment:
+      - DEVICE=Nexus 5
+      - CONNECT_TO_GRID=true
+      - APPIUM=true
+      - SELENIUM_HOST=selenium_hub
+      - AUTO_RECORD=true
+
+  new-test-frame:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - BROWSER=mobile-hub
+#    command: mvn -Dcucumber.options="--tags @loginGmail" test
+    command: mvn -Dcucumber.options="--tags @testAppium" test
+    volumes: 
+      - /dev/shm:/dev/shm
+      - /user/temp:/app/target/reports
+    privileged: true  
+    depends_on:
+      - selenium_hub
+# new-test-frame-2:
+#   build:
+#     context: .
+#     dockerfile: Dockerfile
+#   environment:
+#     - BROWSER=chrome-remote
+#   command: mvn -Dcucumber.options="--tags @Test" test
+#   volumes: 
+#     - /dev/shm:/dev/shm
+#     - /user/temp:/app/target/reports
+#   privileged: true  
+#   depends_on:
+#     - selenium_hub
