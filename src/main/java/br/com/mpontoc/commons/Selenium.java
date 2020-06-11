@@ -1,16 +1,20 @@
 package br.com.mpontoc.commons;
 
-import io.appium.java_client.MobileBy;
-import io.cucumber.core.api.Scenario;
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
-import org.aspectj.bridge.IMessageHandler;
-import org.junit.Assert;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
+import static br.com.mpontoc.commons.BaseTest.driver;
+
 import java.util.ArrayList;
 
-import static br.com.mpontoc.commons.BaseTest.driver;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import io.appium.java_client.MobileBy;
+import io.cucumber.core.api.Scenario;
 
 public class Selenium {
 
@@ -26,7 +30,7 @@ public class Selenium {
 			scenario.embed(screenshot, "image/png");
 			isFirstRun = false;
 		} else {
-			System.out.println("Já imprimiu no cucumber Report");
+			Log.log("Já imprimiu no cucumber Report");
 		}
 	}
 
@@ -39,6 +43,7 @@ public class Selenium {
 	}
 
 	public static void cucumberReport(String msg) {
+		Log.log(msg);
 		setCucumberReportMessage(msg);
 	}
 
@@ -89,7 +94,7 @@ public class Selenium {
 		/////////////////////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////////
 		try {
 			element = driver.findElement(By.xpath("//*[@text='" + name + "']"));
-			System.out.println("Elemento idenficado pelo xpath @text " + name);
+			Log.log("Elemento idenficado pelo xpath @text " + name);
 			borderStyle(element);
 			return element;
 		} catch (Exception e) {
@@ -103,7 +108,7 @@ public class Selenium {
 		/////////////////////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////////
 		try {
 			element = driver.findElement(By.xpath("//*[@id='" + name + "']"));
-			System.out.println("Elemento idenficado pelo xpath @id " + name);
+			Log.log("Elemento idenficado pelo xpath @id " + name);
 			borderStyle(element);
 			return element;
 		} catch (Exception e) {
@@ -117,7 +122,7 @@ public class Selenium {
 		/////////////////////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////////
 		try {
 			element = driver.findElement(By.xpath("//*[@name='" + name + "']"));
-			System.out.println("Elemento idenficado pelo xpath @name " + name);
+			Log.log("Elemento idenficado pelo xpath @name " + name);
 			borderStyle(element);
 			return element;
 		} catch (Exception e) {
@@ -131,7 +136,7 @@ public class Selenium {
 		/////////////////////////////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////////
 		try {
 			element = driver.findElement(By.xpath("//*[@class='" + name + "']"));
-			System.out.println("Elemento idenficado pelo xpath @class " + name);
+			Log.log("Elemento idenficado pelo xpath @class " + name);
 			borderStyle(element);
 			return element;
 		} catch (Exception e) {
@@ -214,14 +219,14 @@ public class Selenium {
 		try {
 			if (assertObjReceved[0] == true) {
 				if (located == true)
-					System.out.println("Ação com o elemento " + obj + " efetuada com sucesso");
+					Log.log("Ação com o elemento " + obj + " efetuada com sucesso");
 				else
-					System.out.println("Ocorreu um problema com o elemento " + obj);
+					Log.log("Ocorreu um problema com o elemento " + obj);
 				Assert.assertTrue(located);
 			}
 		} catch (Exception e1) {
 			if (located != true)
-				System.out.println("Elemento " + obj + " não econtrado");
+				printElementoNaoEncontrado(obj);
 			// e1.printStackTrace();
 		}
 
@@ -235,7 +240,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				System.out.println("Elemento " + obj + " encontrado");
+				printElementoEncontrado(obj);
 				try {
 					executor.executeScript("arguments[0].style.border = 'medium solid blue';", element);
 				} catch (Exception e) {
@@ -274,7 +279,7 @@ public class Selenium {
 				}
 				element2 = findBy(link);
 				waitExistClick(link, 2);
-				System.out.println("Elemento " + link + " encontrado");
+				printElementoEncontrado(link);
 				break;
 			} else
 				try {
@@ -293,8 +298,8 @@ public class Selenium {
 		located = false;
 
 		ArrayList<String> janela = new ArrayList<String>(driver.getWindowHandles());
-		System.out.println(janela);
-		System.out.println(janela.get(1));
+		Log.log(janela.toString());
+		Log.log(janela.get(1));
 		driver.switchTo().window((String) janela.get(0)).close();
 
 		for (int i = 0; i <= timeout; i++) {
@@ -302,7 +307,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				System.out.println("Elemento " + obj + " encontrado");
+				printElementoEncontrado(obj);
 				try {
 					executor.executeScript("arguments[0].style.border = 'medium solid blue';", element);
 				} catch (Exception e) {
@@ -328,7 +333,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				System.out.println("Elemento " + obj + " encontrado");
+				printElementoEncontrado(obj);
 				element.sendKeys(conteudo);
 				break;
 			} else
@@ -347,8 +352,8 @@ public class Selenium {
 		located = false;
 		
 		ArrayList<String> janela = new ArrayList<String>(driver.getWindowHandles());
-		System.out.println(janela);
-		System.out.println(janela.get(1));
+		Log.log(janela.toString());
+		Log.log(janela.get(1));
 		driver.switchTo().window((String) janela.get(0)).close();
 		
 		for (int i = 0; i <= timeout; i++) {
@@ -356,7 +361,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				System.out.println("Elemento " + obj + " encontrado");
+				printElementoEncontrado(obj);
 				element.sendKeys(conteudo);
 				break;
 			} else
@@ -377,7 +382,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				System.out.println("Elemento " + obj + " encontrado");
+				printElementoEncontrado(obj);
 				break;
 			} else
 				try {
@@ -390,6 +395,16 @@ public class Selenium {
 		return located;
 	}
 
+	private static void printElementoEncontrado(String elemento) {
+		Log.log("Elemento [" + elemento + "] encontrado");
+		//Log.log("Elemento " + elemento + " encontrado");
+	}
+	
+	private static void printElementoNaoEncontrado(String elemento) {
+		Log.log("Elemento [" + elemento + "] não encontrado");
+		//Log.log("Elemento " + elemento + " não econtrado");
+	}
+	
 	public static String waitExistGetText(String obj, Integer timeout, Boolean... assertObj) {
 		WebElement element = null;
 		String textoObtido = "";
@@ -401,13 +416,13 @@ public class Selenium {
 				textoObtido = element.getText().toString();
 				if (textoObtido.length() > 3) {
 					located = true;
-					System.out.println("Elemento " + obj + " encontrado");
+					Log.log("Elemento " + obj + " encontrado");
 					try {
 						executor.executeScript("arguments[0].style.backgroundColor = 'yellow';", element);
 					} catch (Exception e) {
 						;
 					}
-					System.out.println("Texto obtido [ " + textoObtido + " ]");
+					Log.log("Texto obtido [ " + textoObtido + " ]");
 					break;
 				}
 			} else
@@ -429,7 +444,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				System.out.println("Elemento " + obj + " encontrado");
+				Log.log("Elemento " + obj + " encontrado");
 				element.click();
 				new Select(element).selectByVisibleText(value);
 				;

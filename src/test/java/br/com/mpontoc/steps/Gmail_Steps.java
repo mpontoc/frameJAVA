@@ -15,6 +15,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import br.com.mpontoc.commons.JsonFileReader;
+import br.com.mpontoc.commons.Log;
 import br.com.mpontoc.commons.Selenium;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.AfterStep;
@@ -84,7 +85,7 @@ public class Gmail_Steps {
                     }
                 }
             } catch (Exception e) {
-                System.out.println("Não existem e-mails para selecionar");
+                Log.log("Não existem e-mails para selecionar");
             }
 
 
@@ -117,7 +118,7 @@ public class Gmail_Steps {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Não existem e-mails para excluir");
+            Log.log("Não existem e-mails para excluir");
         }
 
         waitSecunds(2);

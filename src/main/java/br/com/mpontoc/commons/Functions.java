@@ -15,7 +15,7 @@ import org.zeroturnaround.zip.ZipUtil;
 public class Functions {
 
 	static Runtime rt = Runtime.getRuntime();
-
+	
 	public static String verifyOS() {
 		String OS = null;
 
@@ -38,20 +38,20 @@ public class Functions {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HHmmss");
 		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
 		data = dateFormat.format(new Date(System.currentTimeMillis())).substring(0, 10);
-		System.out.println("Data de hoje " + data);
+		Log.log("Data de hoje " + data);
 
 		try {
 			String responseGetDia = given().when().get("http://elekto.com.br/api/Calendars/br-SP").then()
 					.statusCode(200).extract().body().asString();
 
-			System.out.println("imprimindo o get " + responseGetDia);
+			Log.log("imprimindo o get " + responseGetDia);
 
 			if (responseGetDia.contains(data)) {
 				feriado = true;
-				System.out.println("Hoje é feriado em São Paulo " + data);
+				Log.log("Hoje é feriado em São Paulo " + data);
 			} else {
 				feriado = false;
-				System.out.println("Hoje não é feriado em São Paulo " + data);
+				Log.log("Hoje não é feriado em São Paulo " + data);
 			}
 
 		} catch (Exception e) {
@@ -85,8 +85,8 @@ public class Functions {
 						rt.exec(killFirefoxDriver);
 						rt.exec(verifyVersoinFirefox).getOutputStream().toString();
 						rt.exec(verifyVersionChrome).getOutputStream();
-						System.out.println(verifyVersoinFirefox);
-						System.out.println(verifyVersionChrome);
+						Log.log(verifyVersoinFirefox);
+						Log.log(verifyVersionChrome);
 
 					} else {
 						rt.exec(killChrome);
@@ -132,7 +132,7 @@ public class Functions {
 
 		String OS = verifyOS();
 
-		System.out.println(OS);
+		Log.log(OS);
 
 		if (OS == "LINUX") {
 			System.setProperty("webdriver.chrome.driver", "lib/webdriver/linux/chromedriver");
@@ -153,17 +153,23 @@ public class Functions {
 	public static void apagaReportAntesExecucao() {
 		String pathReport = System.getProperty("user.dir") + File.separator + "target" + File.separator
 				+ "cucumber-reports/";
+		String pathReportLog = pathReport + File.separator + "log" + File.separator;
 		try {
-			File dir = null;
-			dir = new File(pathReport);
+			File dir = new File(pathReport);
+			File dir2 = new File(pathReportLog);
 			File[] listFiles = dir.listFiles();
+			File[] listFiles2 = dir2.listFiles();
 			for (File file : listFiles) {
-				if (file.getName().contains(".png") == false) {
-					System.out.println("Arquivo não será apagado " + file.getName());
-				} else {
+				if (file.getName().contains(".png")) {
 					System.out.println("Deletando " + file.getName());
 					file.delete();
+				} else {
+					System.out.println("Arquivo não será apagado " + file.getName());
 				}
+			}
+			for (File file : listFiles2) {
+				System.out.println("Deletando " + file.getName());
+				file.delete();
 			}
 			System.out.println("Evidências apagadas com sucesso");
 		} catch (Exception e) {
@@ -191,9 +197,9 @@ public class Functions {
 			
 			try {
 				ZipUtil.pack(new File(pathReport), new File(pathReportZip));
-				System.out.println("Evidências salvas no caminho " + pathReportZip);
+				Log.log("Evidências salvas no caminho " + pathReportZip);
 			} catch (Exception e) {
-				System.out.println("Não foi possível zipar a pasta de Report");
+				Log.log("Não foi possível zipar a pasta de Report");
 				e.printStackTrace();
 			}
 		}

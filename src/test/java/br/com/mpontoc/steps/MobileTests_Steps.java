@@ -1,7 +1,6 @@
 package br.com.mpontoc.steps;
 
 import static br.com.mpontoc.commons.BaseTest.driver;
-import static br.com.mpontoc.commons.Selenium.waitExist;
 import static br.com.mpontoc.commons.Selenium.waitExistClick;
 import static br.com.mpontoc.commons.Selenium.waitExistGetText;
 import static br.com.mpontoc.commons.Selenium.waitExistSet;
@@ -11,6 +10,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import br.com.mpontoc.commons.Log;
 import br.com.mpontoc.commons.Selenium;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.AfterStep;
@@ -42,7 +42,7 @@ public class MobileTests_Steps {
 
         validaMenu = Selenium.waitExistGetText("Formulário", 3, true);
         Selenium.waitExistClick("//*[@text='Formulário']", 3, true);
-        System.out.println("Texto obtido nos steps " + validaMenu);
+        Log.log("Texto obtido nos steps " + validaMenu);
 
     }
 
@@ -50,9 +50,9 @@ public class MobileTests_Steps {
     public void eu_abro_o_app_CT_Appium() throws Throwable {
 
         if (Selenium.waitExist("//android.widget.FrameLayout", 3, true) == true)
-            System.out.println("Estou no app");
+            Log.log("Estou no app");
         else
-            System.out.println("Problema para abrir o app");
+            Log.log("Problema para abrir o app");
     }
 
     @Quando("entro no formulário")
@@ -66,7 +66,7 @@ public class MobileTests_Steps {
         waitExistSet("Nome", "Cleber", 3, true);
         Thread.sleep(1000);
         validaNome = waitExistGetText("Cleber", 3, true);
-        System.out.println(validaNome);
+        Log.log(validaNome);
         waitExistClick("XBox One", 3, true);
         Thread.sleep(3000);
         waitExistClick("Nintendo Switch", 3, true);
@@ -85,14 +85,14 @@ public class MobileTests_Steps {
 
     @Quando("eu abro a calculador")
     public void eu_abro_a_calculador() throws Throwable {
-        System.out.println("test");
+        Log.log("test");
         String Resultado = driver.findElement(By.id("result")).getText();
         Assert.assertEquals("4", Resultado);
-        System.out.println(Resultado);
+        Log.log(Resultado);
     }
 
     @Entao("é apresentado o app calculadora")
     public void é_apresentado_o_app_calculadora() throws Throwable {
-        System.out.println("test");
+        Log.log("test");
     }
 }
