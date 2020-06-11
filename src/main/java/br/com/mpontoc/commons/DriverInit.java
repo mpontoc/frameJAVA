@@ -30,8 +30,8 @@ public class DriverInit {
 
 		if (BROWSER_ENV != null) {
 			Browser = BROWSER_ENV;
-			System.out.println(Browser);
-			System.out.println(BROWSER_ENV);
+			Log.log(Browser);
+			Log.log(BROWSER_ENV);
 		}
 
 		switch (Browser) {
@@ -46,9 +46,9 @@ public class DriverInit {
 				optionsFirefox.addArguments("--start-maximized");
 				driver = new FirefoxDriver(optionsFirefox);
 				Thread.sleep(1000);
-				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 			} catch (Exception e2) {
-				System.out.println("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browser"));
 				e2.printStackTrace();
 			}
 
@@ -64,9 +64,9 @@ public class DriverInit {
 				optHeadlessFirefox.addArguments("--height=768");
 				driver = new FirefoxDriver(optHeadlessFirefox);
 				Thread.sleep(1000);
-				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 			} catch (Exception e1) {
-				System.out.println("Problema para rodar com firefox headless");
+				Log.log("Problema para rodar com firefox headless");
 				e1.printStackTrace();
 			}
 
@@ -85,10 +85,10 @@ public class DriverInit {
 				optRemoteFirefox.addArguments("--height=768");
 				driver = new RemoteWebDriver(new URL(baseURL), optRemoteFirefox);
 				Thread.sleep(2000);
-				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 				driver.get(baseURL);
 			} catch (Exception e) {
-				System.out.println("Não foi possível conectar o selenium hub firefox");
+				Log.log("Não foi possível conectar o selenium hub firefox");
 				e.printStackTrace();
 			}
 			break;
@@ -101,9 +101,9 @@ public class DriverInit {
 				optionsChrome.addArguments("--window-size=1024,768");
 				driver = new ChromeDriver(optionsChrome);
 				Thread.sleep(1000);
-				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 			} catch (Exception e1) {
-				System.out.println("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browser"));
 				e1.printStackTrace();
 			}
 			break;
@@ -118,9 +118,9 @@ public class DriverInit {
 				// optHeadlessChrome.addArguments("--log-level=3");
 				driver = new ChromeDriver(optHeadlessChrome);
 				Thread.sleep(1000);
-				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 			} catch (Exception e1) {
-				System.out.println("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browser"));
 				e1.printStackTrace();
 			}
 			break;
@@ -137,10 +137,10 @@ public class DriverInit {
 				optRemoteChrome.addArguments("--window-size=1024,768");
 				driver = new RemoteWebDriver(new URL(baseURL), optRemoteChrome);
 				Thread.sleep(2000);
-				System.out.println("Window sizes " + driver.manage().window().getSize().toString());
+				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 				driver.get(baseURL);
 			} catch (Exception e) {
-				System.out.println("Não foi possível conectar o selenium hub chrome");
+				Log.log("Não foi possível conectar o selenium hub chrome");
 				e.printStackTrace();
 			}
 			break;
@@ -156,7 +156,7 @@ public class DriverInit {
 				// cap.setCapability("appActivity", "com.android.calculator2.Calculator");
 				String caminhoAPK = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test"
 						+ File.separator + "resources" + File.separator + "apk" + File.separator + "original.apk";
-				System.out.println(caminhoAPK);
+				Log.log(caminhoAPK);
 				// passar o apk para ser instalado no momento da execução
 				caps.setCapability(MobileCapabilityType.APP, caminhoAPK);
 				URL urlAppium = new URL("http://127.0.1:4723/wd/hub");
@@ -164,7 +164,7 @@ public class DriverInit {
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Não foi possível conectar ao Appium");
+				Log.log("Não foi possível conectar ao Appium");
 			}
 			break;
 
@@ -178,14 +178,14 @@ public class DriverInit {
 				caps.setCapability("avd", "nexus_5_7.1.1");
 				caps.setCapability("browserName", "android");
 				String caminhoAPK = "/root/tmp/original.apk"; 
-				System.out.println(caminhoAPK);
+				Log.log(caminhoAPK);
 				// passar o apk para ser instalado no momento da execução
 				caps.setCapability("app", caminhoAPK);
 				driver = new RemoteWebDriver(new URL(baseURL), caps);
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Não foi possível conectar ao Appium");
+				Log.log("Não foi possível conectar ao Appium");
 			}
 			break;
 
@@ -204,7 +204,7 @@ public class DriverInit {
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("Não foi possível conectar ao Appium Remote");
+				Log.log("Não foi possível conectar ao Appium Remote");
 			}
 			break;
 		}
@@ -216,6 +216,7 @@ public class DriverInit {
 	}
 
 	public DriverInit() {
+		Functions.setUp();
 		createDriver();
 	}
 

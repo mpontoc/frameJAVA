@@ -10,9 +10,7 @@ public class BaseTest {
 
 	@BeforeClass
 	public static void setUp() {
-		System.out.println("Running on " + Functions.verifyOS());
-		Functions.setUp();
-		
+		Log.log("Running on " + Functions.verifyOS());
 	}
 	
 	@AfterClass
@@ -20,8 +18,6 @@ public class BaseTest {
 		driver.quit();
 		Selenium.waitSecunds(3);
 		Functions.zipReportFiles();
-		System.out.println("driver finalizado [ " + Setup.getProp("browser" ) + " ]");
-
+		Log.log("driver finalizado [ " + Setup.getProp("browser" ) + " ]");
 	}
-	
 }

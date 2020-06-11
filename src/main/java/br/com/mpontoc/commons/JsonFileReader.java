@@ -16,7 +16,7 @@ public class JsonFileReader {
 		try {
 
 			JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("./src/test/resources/json/gmail.json"));
-			System.out.println(jsonObject);
+			Log.log(jsonObject.toJSONString());
 
 			Object obj = new Object();
 			obj = jsonObject;
@@ -26,10 +26,10 @@ public class JsonFileReader {
 			JSONObject getValueField = (JSONObject) indexJson.get("gmail");
 
 			String firstName = (String) getValueField.get("user");
-			System.out.println(firstName);
+			Log.log(firstName);
 
 			String lastName = (String) getValueField.get("pass");
-			System.out.println(lastName);
+			Log.log(lastName);
 
 		} catch (Exception e) {
 
@@ -47,7 +47,7 @@ public class JsonFileReader {
 		try {
 
 			JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("./src/test/resources/json/" + nameArchiveJson));
-			System.out.println(jsonObject);
+			Log.log(jsonObject.toJSONString());
 
 			Object obj = new Object();
 			obj = jsonObject;
@@ -69,8 +69,8 @@ public class JsonFileReader {
 	public void testGetSingleJson() {
 		
 		String user = getJsonSingleField("gmail.json", "gmail", "user");
-		System.out.println("O usuário é " + user);
-		
+		Log.log("O usuário é " + user);
+
 	}
 
 	@Test
@@ -83,15 +83,15 @@ public class JsonFileReader {
 			for (Object obj : jsonArray) {
 
 				JSONObject indexJsonArray = (JSONObject) obj;
-				System.out.println(indexJsonArray);
+				Log.log(indexJsonArray.toJSONString());
 
 				JSONObject getValueFieldArray = (JSONObject) indexJsonArray.get("employee");
 
 				String firstName = (String) getValueFieldArray.get("firstName");
-				System.out.println(firstName);
+				Log.log(firstName);
 
 				String lastName = (String) getValueFieldArray.get("lastName");
-				System.out.println(lastName);
+				Log.log(lastName);
 			}
 
 		} catch (Exception e) {
