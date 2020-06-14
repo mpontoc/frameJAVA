@@ -18,11 +18,11 @@ import io.appium.java_client.remote.MobileCapabilityType;
 
 public class DriverInit {
 
-	private WebDriver driver;
+	private static WebDriver driver;
 
-	public void createDriver() {
-
-		String Browser = Setup.getProp("browser");
+	private static WebDriver createDriver() {
+		Functions.setUp();
+		String Browser = Setup.getProp("browserOrDevice");
 		String BROWSER_ENV = System.getenv("BROWSER");
 		String baseURL = Setup.getProp("baseURL");
 		String userName = "mpontoc1";
@@ -34,7 +34,7 @@ public class DriverInit {
 			Log.log(BROWSER_ENV);
 		}
 
-		switch (Browser) {
+		switch (Browser.trim()) {
 
 		case "firefox":
 
@@ -48,7 +48,7 @@ public class DriverInit {
 				Thread.sleep(1000);
 				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 			} catch (Exception e2) {
-				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browserOrDevice"));
 				e2.printStackTrace();
 			}
 
@@ -103,7 +103,7 @@ public class DriverInit {
 				Thread.sleep(1000);
 				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 			} catch (Exception e1) {
-				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browserOrDevice"));
 				e1.printStackTrace();
 			}
 			break;
@@ -120,7 +120,7 @@ public class DriverInit {
 				Thread.sleep(1000);
 				Log.log("Window sizes " + driver.manage().window().getSize().toString());
 			} catch (Exception e1) {
-				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browser"));
+				Log.log("Não foi possível iniciar o driver " + Setup.getProp("browserOrDevice"));
 				e1.printStackTrace();
 			}
 			break;
@@ -154,11 +154,13 @@ public class DriverInit {
 				caps.setCapability("automationName", "uiautomator2");
 				// cap.setCapability("appPackage", "com.android.calculator2");
 				// cap.setCapability("appActivity", "com.android.calculator2.Calculator");
+			//	caps.setCapability("appWaitActivity", "br.com.itau.cartoes.presentation.*");
+				caps.setCapability("autoGrantPermissions", "true");
 				String caminhoAPK = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test"
 						+ File.separator + "resources" + File.separator + "apk" + File.separator + "original.apk";
 				Log.log(caminhoAPK);
 				// passar o apk para ser instalado no momento da execução
-				caps.setCapability(MobileCapabilityType.APP, caminhoAPK);
+				//caps.setCapability(MobileCapabilityType.APP, caminhoAPK);
 				URL urlAppium = new URL("http://127.0.1:4723/wd/hub");
 				driver = new AndroidDriver<AndroidElement>(urlAppium, caps);
 				Thread.sleep(3000);
@@ -208,16 +210,12 @@ public class DriverInit {
 			}
 			break;
 		}
+		return driver;
 
 	}
 
-	public WebDriver getDriver() {
-		return this.driver;
-	}
-
-	public DriverInit() {
-		Functions.setUp();
-		createDriver();
+	public static WebDriver driver() {
+		return createDriver();
 	}
 
 }

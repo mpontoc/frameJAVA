@@ -8,11 +8,12 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(
+		
 //		tags = { " @loginGmail" },
 //		tags = { " @apagarEmails " },
-		tags = { " @TestUol1 " },
+//		tags = { " @TestUol1 " },
 //		tags = { " @consultaGoogle , @testesUOL " },
-//		tags = { "@testAppium" },
+		tags = { "@testAppium" },
 		features = "src/test/resources/features", // local onde estão as features
 		glue = { 
 				"br.com.mpontoc.steps", // package onde estão os steps
@@ -22,7 +23,6 @@ import org.junit.runner.RunWith;
 				// "json:target/reports/results.json",
 				"html:target/cucumber-reports",
 				}, 
-		stepNotifications = true,
 		monochrome = true, // deixa o console só com fonte cor preta
 		dryRun = false, // ao rodar quando true percorre toda automação verificando se faltam passos
 		strict = true // quando está true ele falha o cenario inteiro caso estja faltando algum step

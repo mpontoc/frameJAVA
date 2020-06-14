@@ -16,13 +16,11 @@ public class Setup {
 		try {
 			file = new FileInputStream("./src/main/resources/setup.properties");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			props.load(file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return props;
@@ -34,13 +32,11 @@ public class Setup {
 		try {
 			file = new FileInputStream("./src/main/resources/setup.properties");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			props.load(file);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return props.getProperty(prop);

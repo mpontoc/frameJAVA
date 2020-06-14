@@ -1,20 +1,18 @@
 package br.com.mpontoc.commons;
 
-import static br.com.mpontoc.commons.BaseTest.driver;
-
-import java.util.ArrayList;
-
+import io.appium.java_client.MobileBy;
+import io.appium.java_client.android.Activity;
+import io.appium.java_client.android.StartsActivity;
+import io.cucumber.core.api.Scenario;
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
+import org.aspectj.bridge.IMessageHandler;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import java.util.ArrayList;
 
-import io.appium.java_client.MobileBy;
-import io.cucumber.core.api.Scenario;
+import static br.com.mpontoc.commons.BaseTest.driver;
 
 public class Selenium {
 
@@ -23,6 +21,7 @@ public class Selenium {
 	public static Boolean located = false;
 	public static Boolean[] assertObjReceved = null;
 	public static Boolean isFirstRun = null;
+	private static String[] packageActivities;
 
 	public static void printScreenAfterStep(Scenario scenario) {
 		if (isFirstRun == true) {
@@ -43,7 +42,6 @@ public class Selenium {
 	}
 
 	public static void cucumberReport(String msg) {
-		Log.log(msg);
 		setCucumberReportMessage(msg);
 	}
 
@@ -62,11 +60,14 @@ public class Selenium {
 			;
 		}
 	}
-	
+
 	public static void scrollDown(int count) {
 		for (int i = 0; i < count; i++) {
 			executor.executeScript("window.scrollTo(0,document.body.scrollHeight)");
-			try {Thread.sleep(2000);} catch (Exception ex) {}
+			try {
+				Thread.sleep(2000);
+			} catch (Exception ex) {
+			}
 		}
 	}
 
@@ -226,7 +227,7 @@ public class Selenium {
 			}
 		} catch (Exception e1) {
 			if (located != true)
-				printElementoNaoEncontrado(obj);
+				Log.log("Elemento " + obj + " não econtrado");
 			// e1.printStackTrace();
 		}
 
@@ -240,7 +241,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				printElementoEncontrado(obj);
+				Log.log("Elemento " + obj + " encontrado");
 				try {
 					executor.executeScript("arguments[0].style.border = 'medium solid blue';", element);
 				} catch (Exception e) {
@@ -279,7 +280,7 @@ public class Selenium {
 				}
 				element2 = findBy(link);
 				waitExistClick(link, 2);
-				printElementoEncontrado(link);
+				Log.log("Elemento " + link + " encontrado");
 				break;
 			} else
 				try {
@@ -307,7 +308,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				printElementoEncontrado(obj);
+				Log.log("Elemento " + obj + " encontrado");
 				try {
 					executor.executeScript("arguments[0].style.border = 'medium solid blue';", element);
 				} catch (Exception e) {
@@ -333,7 +334,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				printElementoEncontrado(obj);
+				Log.log("Elemento " + obj + " encontrado");
 				element.sendKeys(conteudo);
 				break;
 			} else
@@ -345,23 +346,24 @@ public class Selenium {
 		}
 		validaElemento(obj, assertObjReceved);
 	}
-	
-	public static void waitExistSetNewWindow(String obj, String conteudo, Integer numberWindow, Integer timeout, Boolean... assertObj) {
+
+	public static void waitExistSetNewWindow(String obj, String conteudo, Integer numberWindow, Integer timeout,
+			Boolean... assertObj) {
 		WebElement element = null;
 		assertObjReceved = assertObj;
 		located = false;
-		
+
 		ArrayList<String> janela = new ArrayList<String>(driver.getWindowHandles());
 		Log.log(janela.toString());
 		Log.log(janela.get(1));
 		driver.switchTo().window((String) janela.get(0)).close();
-		
+
 		for (int i = 0; i <= timeout; i++) {
 			driver.switchTo().window((String) janela.get(numberWindow));
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				printElementoEncontrado(obj);
+				Log.log("Elemento " + obj + " encontrado");
 				element.sendKeys(conteudo);
 				break;
 			} else
@@ -382,7 +384,7 @@ public class Selenium {
 			element = findBy(obj);
 			if (element != null) {
 				located = true;
-				printElementoEncontrado(obj);
+				Log.log("Elemento " + obj + " encontrado");
 				break;
 			} else
 				try {
@@ -395,16 +397,6 @@ public class Selenium {
 		return located;
 	}
 
-	private static void printElementoEncontrado(String elemento) {
-		Log.log("Elemento [" + elemento + "] encontrado");
-		//Log.log("Elemento " + elemento + " encontrado");
-	}
-	
-	private static void printElementoNaoEncontrado(String elemento) {
-		Log.log("Elemento [" + elemento + "] não encontrado");
-		//Log.log("Elemento " + elemento + " não econtrado");
-	}
-	
 	public static String waitExistGetText(String obj, Integer timeout, Boolean... assertObj) {
 		WebElement element = null;
 		String textoObtido = "";
@@ -457,6 +449,123 @@ public class Selenium {
 				}
 		}
 		validaElemento(obj, assertObjReceved);
+	}
+
+	public static String[] getPackageAndActivity(String app) {
+
+		String packageApp = null;
+		String activityApp = null;
+		String[] packageActivities = { packageApp, activityApp };
+
+		switch (app.trim()) {
+
+		case "calc":
+
+			try {
+
+				packageActivities[0] = "com.android.calculator2";
+				packageActivities[1] = "com.android.calculator2.Calculator";
+				Log.log("Iniciando app " + app);
+				return packageActivities;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case "ctAppium":
+
+			try {
+
+				packageActivities[0] = "com.ctappium";
+				packageActivities[1] = "com.ctappium.MainActivity";
+				Log.log("Iniciando app " + app);
+				return packageActivities;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case "itauCard":
+
+			try {
+
+				packageActivities[0] = "com.itaucard.activity";
+				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
+				Log.log("Iniciando app " + app);
+				return packageActivities;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case "hiperCard":
+
+			try {
+
+				packageActivities[0] = "com.hipercard.app";
+				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
+				Log.log("Iniciando app " + app);
+				return packageActivities;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case "crediCard":
+
+			try {
+
+				packageActivities[0] = "com.credicard.app";
+				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
+				Log.log("Iniciando app " + app);
+				return packageActivities;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+
+		case "luiza":
+
+			try {
+
+				packageActivities[0] = "com.cartaoluiza.app";
+				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
+				Log.log("Iniciando app " + app);
+				return packageActivities;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+
+		}
+		return packageActivities;
+	}
+
+	public static WebDriver newApp(String app) {
+
+		// WebDriver driverNew = null;
+		String[] packageAndActivity = getPackageAndActivity(app);
+
+		System.out.println(packageAndActivity[0]);
+		System.out.println(packageAndActivity[1]);
+
+		Activity activity = new Activity(packageAndActivity[0], packageAndActivity[1]);
+		activity.setStopApp(false);
+
+		try {
+			((StartsActivity) driver).startActivity(activity);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return driver;
+
 	}
 
 }

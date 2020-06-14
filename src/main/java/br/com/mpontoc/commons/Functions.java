@@ -9,13 +9,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.zeroturnaround.zip.ZipUtil;
 
 public class Functions {
 
 	static Runtime rt = Runtime.getRuntime();
-	
+
 	public static String verifyOS() {
 		String OS = null;
 
@@ -67,7 +68,7 @@ public class Functions {
 		if (killBrowser.equals("true")) {
 
 			// Runtime rt = Runtime.getRuntime();
-			String Browser = Setup.getProp("browser");
+			String Browser = Setup.getProp("browserOrDevice");
 
 			if (verifyOS() == "LINUX") {
 
@@ -132,8 +133,6 @@ public class Functions {
 
 		String OS = verifyOS();
 
-		Log.log(OS);
-
 		if (OS == "LINUX") {
 			System.setProperty("webdriver.chrome.driver", "lib/webdriver/linux/chromedriver");
 			System.setProperty("webdriver.chrome.verboseLogging", "false");
@@ -153,25 +152,21 @@ public class Functions {
 	public static void apagaReportAntesExecucao() {
 		String pathReport = System.getProperty("user.dir") + File.separator + "target" + File.separator
 				+ "cucumber-reports/";
-		String pathReportLog = pathReport + File.separator + "log" + File.separator;
+		try {FileUtils.forceDelete(new File(pathReport + File.separator + "log")); } catch (IOException e) {;}
 		try {
-			File dir = new File(pathReport);
-			File dir2 = new File(pathReportLog);
+			File dir = null;
+			dir = new File(pathReport);
 			File[] listFiles = dir.listFiles();
-			File[] listFiles2 = dir2.listFiles();
 			for (File file : listFiles) {
-				if (file.getName().contains(".png")) {
-					System.out.println("Deletando " + file.getName());
-					file.delete();
+				if (file.getName().contains(".png") == false) {
+					Log.log("Arquivo não será apagado " + file.getName());
 				} else {
-					System.out.println("Arquivo não será apagado " + file.getName());
+					Log.log("Deletando " + file.getName());
+					file.delete();
 				}
 			}
-			for (File file : listFiles2) {
-				System.out.println("Deletando " + file.getName());
-				file.delete();
-			}
-			System.out.println("Evidências apagadas com sucesso");
+			
+			Log.log("Evidências apagadas com sucesso ");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

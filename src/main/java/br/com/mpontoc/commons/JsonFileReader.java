@@ -70,7 +70,7 @@ public class JsonFileReader {
 		
 		String user = getJsonSingleField("gmail.json", "gmail", "user");
 		Log.log("O usuário é " + user);
-
+		
 	}
 
 	@Test

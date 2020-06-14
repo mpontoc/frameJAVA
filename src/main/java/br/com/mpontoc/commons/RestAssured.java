@@ -27,7 +27,7 @@ public class RestAssured {
 	public void validaBody(){
 		
 		String validaBody = responseString("https://pokeapi.co/api/v2/pokemon-form/25/", "get", 200);
-		Log.log("Este é o body da requisição " + validaBody);
+		System.out.println("Este é o body da requisição " + validaBody);
 		//Assert.assertEquals("pikachu", validaBody);
 		if(validaBody.contains("pikachu"))
 			Log.log("Teste OK");

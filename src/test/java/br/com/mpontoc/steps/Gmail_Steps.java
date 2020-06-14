@@ -45,6 +45,7 @@ public class Gmail_Steps {
         waitSecunds(2);
 
         Selenium.cucumberReport(driver.getCurrentUrl());
+        Log.log(driver.getCurrentUrl());
     }
 
     @Quando("efetuo o login")
@@ -85,7 +86,7 @@ public class Gmail_Steps {
                     }
                 }
             } catch (Exception e) {
-                Log.log("Não existem e-mails para selecionar");
+                System.out.println("Não existem e-mails para selecionar");
             }
 
 
@@ -118,7 +119,7 @@ public class Gmail_Steps {
                 }
             }
         } catch (Exception e) {
-            Log.log("Não existem e-mails para excluir");
+            System.out.println("Não existem e-mails para excluir");
         }
 
         waitSecunds(2);

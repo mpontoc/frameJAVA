@@ -1,15 +1,5 @@
 package br.com.mpontoc.steps;
 
-import static br.com.mpontoc.commons.BaseTest.driver;
-import static br.com.mpontoc.commons.Selenium.cucumberReport;
-import static br.com.mpontoc.commons.Selenium.scrollDown;
-import static br.com.mpontoc.commons.Selenium.waitExistClick;
-import static br.com.mpontoc.commons.Selenium.waitExistGetText;
-import static br.com.mpontoc.commons.Selenium.waitExistSelectComboBox;
-import static br.com.mpontoc.commons.Selenium.waitExistSetNewWindow;
-import static br.com.mpontoc.commons.Selenium.waitSecunds;
-
-import br.com.mpontoc.commons.Log;
 import br.com.mpontoc.commons.Selenium;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.AfterStep;
@@ -17,6 +7,9 @@ import io.cucumber.java.BeforeStep;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+
+import static br.com.mpontoc.commons.BaseTest.driver;
+import static br.com.mpontoc.commons.Selenium.*;
 
 public class UOL_Steps {
 
@@ -33,6 +26,7 @@ public class UOL_Steps {
 
 	@Dado("que eu estou na tela do uol")
 	public void que_eu_estou_na_tela_do_uol() {
+
 		driver.get("http://www.uol.com.br");
 		cucumberReport(driver.getCurrentUrl());
 
@@ -40,13 +34,16 @@ public class UOL_Steps {
 
 	@Quando("eu acesso o menu Economia")
 	public void eu_acesso_o_menu_Economia() {
+
 		Selenium.waitExistClickAndPerform("//span[contains(.,'Economia')]", "Líderes", 3, true);
+
 	}
 
 	@Entao("eu acesso o link Líderes")
 	public void eu_acesso_o_link_Líderes() {
+
 		String textoObtido = Selenium.waitExistGetText("//h4[contains(.,'Economia') or (contains(.,'Líderes'))]", 4);
-		Log.log("Texto Obtido nos steps " + textoObtido);
+		System.out.println("Texto Obtido nos steps " + textoObtido);
 
 		driver.get("http://www.institucional.jucesp.sp.gov.br/cidadao.php");
 		waitSecunds(2);
@@ -65,7 +62,9 @@ public class UOL_Steps {
 
 	@Dado("que eu estou no {string}")
 	public void que_eu_estou_no(String site) {
+
 		driver.get(site);
+
 	}
 
 	@Quando("eu pego a url e imprimo no cucumber report")
