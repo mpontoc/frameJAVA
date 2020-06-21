@@ -9,6 +9,7 @@ import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
 import static br.com.mpontoc.commons.BaseTest.driver;
+import static br.com.mpontoc.commons.Functions.waitSecunds;
 import static br.com.mpontoc.commons.Selenium.*;
 
 public class UOL_Steps {

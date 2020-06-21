@@ -12,7 +12,7 @@ import org.junit.Assert;
 
 import static br.com.mpontoc.commons.BaseTest.driver;
 import static br.com.mpontoc.commons.Selenium.waitExistClick;
-import static br.com.mpontoc.commons.Selenium.waitSecunds;
+import static br.com.mpontoc.commons.Functions.waitSecunds;
 
 public class Consulta_Steps {
 

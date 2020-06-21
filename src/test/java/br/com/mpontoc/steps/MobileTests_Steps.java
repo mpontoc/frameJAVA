@@ -4,12 +4,13 @@ import static br.com.mpontoc.commons.BaseTest.driver;
 import static br.com.mpontoc.commons.Selenium.waitExistClick;
 import static br.com.mpontoc.commons.Selenium.waitExistGetText;
 import static br.com.mpontoc.commons.Selenium.waitExistSet;
-import static br.com.mpontoc.commons.Selenium.waitSecunds;
+import static br.com.mpontoc.commons.Functions.waitSecunds;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import br.com.mpontoc.commons.Mobile;
 import br.com.mpontoc.commons.Selenium;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.StartsActivity;
@@ -33,26 +34,12 @@ public class MobileTests_Steps {
         Selenium.writeReportAfterStep(scenario);
     }
 
-    private WebElement menu = null;
-    private WebElement nome = null;
     private String validaMenu;
     private String validaNome;
-    String appPackage = "com.android.calculator2";
-    String appActivity = "com.android.calculator2.Calculator";
 
     @Dado("^que eu estou no device")
     public void que_eu_estou_no_device() throws Throwable {
-    	
-    	
- /*   	try {
-    		Activity activity = new Activity(appPackage, appActivity);
-    		activity.setStopApp(false);
-			((StartsActivity) driver).startActivity(activity);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-*/    	
+    	  	
     	Selenium.newApp("hiperCard");
     	waitSecunds(2);
     	Selenium.newApp("itauCard");
@@ -110,17 +97,25 @@ public class MobileTests_Steps {
         waitSecunds(2);
        // Assert.assertTrue(waitExist("10:20",2));
     }
+    
+    @Dado("que eu estou no app {string}")
+    public void que_eu_estou_no_app(String app) {
 
-    @Quando("eu abro a calculador")
-    public void eu_abro_a_calculador() throws Throwable {
-        System.out.println("test");
-        String Resultado = driver.findElement(By.id("result")).getText();
-        Assert.assertEquals("4", Resultado);
-        System.out.println(Resultado);
+    	Mobile.setApp(app);
+    	
+    	String appAtual = Mobile.getApp();
+    	
+    	System.out.println("Este é o app " + appAtual);
+    	
+    	Selenium.newApp(app);
+    	waitSecunds(2);
+    	
     }
+    
+    @Quando("eu abro o app correspondente")
+    public void eu_abro_o_app_correspondente() {
+    	
+    	System.out.println("Teste efetuado no app " + Mobile.getApp());
 
-    @Entao("é apresentado o app calculadora")
-    public void é_apresentado_o_app_calculadora() throws Throwable {
-        System.out.println("test");
     }
 }

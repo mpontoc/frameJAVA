@@ -50,17 +50,6 @@ public class Selenium {
 		cucumberReportMessage = "";
 	}
 
-	public static void waitSecunds(int segundos) {
-
-		int segundosConvertidos = segundos * 1000;
-
-		try {
-			Thread.sleep(segundosConvertidos);
-		} catch (InterruptedException e) {
-			;
-		}
-	}
-
 	public static void scrollDown(int count) {
 		for (int i = 0; i < count; i++) {
 			executor.executeScript("window.scrollTo(0,document.body.scrollHeight)");
@@ -451,107 +440,12 @@ public class Selenium {
 		validaElemento(obj, assertObjReceved);
 	}
 
-	public static String[] getPackageAndActivity(String app) {
-
-		String packageApp = null;
-		String activityApp = null;
-		String[] packageActivities = { packageApp, activityApp };
-
-		switch (app.trim()) {
-
-		case "calc":
-
-			try {
-
-				packageActivities[0] = "com.android.calculator2";
-				packageActivities[1] = "com.android.calculator2.Calculator";
-				Log.log("Iniciando app " + app);
-				return packageActivities;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case "ctAppium":
-
-			try {
-
-				packageActivities[0] = "com.ctappium";
-				packageActivities[1] = "com.ctappium.MainActivity";
-				Log.log("Iniciando app " + app);
-				return packageActivities;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case "itauCard":
-
-			try {
-
-				packageActivities[0] = "com.itaucard.activity";
-				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
-				Log.log("Iniciando app " + app);
-				return packageActivities;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case "hiperCard":
-
-			try {
-
-				packageActivities[0] = "com.hipercard.app";
-				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
-				Log.log("Iniciando app " + app);
-				return packageActivities;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case "crediCard":
-
-			try {
-
-				packageActivities[0] = "com.credicard.app";
-				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
-				Log.log("Iniciando app " + app);
-				return packageActivities;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
-
-		case "luiza":
-
-			try {
-
-				packageActivities[0] = "com.cartaoluiza.app";
-				packageActivities[1] = "br.com.itau.cartoes.presentation.splash.SplashActivity";
-				Log.log("Iniciando app " + app);
-				return packageActivities;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
-
-		}
-		return packageActivities;
-	}
-
 	public static WebDriver newApp(String app) {
 
-		// WebDriver driverNew = null;
-		String[] packageAndActivity = getPackageAndActivity(app);
+		Mobile.setPackageActivities(Mobile.getApp());
 
+		String[] packageAndActivity = Mobile.getPackageActivities();
+		
 		System.out.println(packageAndActivity[0]);
 		System.out.println(packageAndActivity[1]);
 

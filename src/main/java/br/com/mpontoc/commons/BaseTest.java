@@ -10,15 +10,18 @@ public class BaseTest {
 
 	@BeforeClass
 	public static void setUp() {
-		Log.log("Running on " + Functions.verifyOS());
+
 	}
-	
+
 	@AfterClass
 	public static void finalizaExecucao() {
-		driver.quit();
-		Selenium.waitSecunds(3);
+		try {
+			driver.quit();
+		} catch (Exception e) {
+		}
+		Functions.waitSecunds(3);
 		Functions.zipReportFiles();
-		Log.log("driver finalizado [ " + Setup.getProp("browserOrDevice" ) + " ]");
+		Log.log("driver finalizado [ " + Setup.getProp("browserOrDevice") + " ]");
 	}
-	
+
 }

@@ -60,6 +60,18 @@ public class Functions {
 		}
 		return false;
 	}
+	
+	public static void waitSecunds(int segundos) {
+
+		int segundosConvertidos = segundos * 1000;
+
+		try {
+			Thread.sleep(segundosConvertidos);
+		} catch (InterruptedException e) {
+			;
+		}
+	}
+
 
 	public static void processKill() {
 
@@ -82,10 +94,10 @@ public class Functions {
 				try {
 
 					if (Browser == "firefox") {
-						rt.exec(killFirefox);
-						rt.exec(killFirefoxDriver);
 						rt.exec(verifyVersoinFirefox).getOutputStream().toString();
 						rt.exec(verifyVersionChrome).getOutputStream();
+						rt.exec(killFirefox);
+						rt.exec(killFirefoxDriver);
 						Log.log(verifyVersoinFirefox);
 						Log.log(verifyVersionChrome);
 
@@ -200,9 +212,17 @@ public class Functions {
 		}
 
 	}
+	
+	public static void printOS() {
+		
+		String OS = null;
+		OS = System.getProperty("os.name");
+		Log.log("Running on " + OS);
+	}
 
 	public static void setUp() {
-
+		
+		printOS();
 		apagaReportAntesExecucao();
 
 	}

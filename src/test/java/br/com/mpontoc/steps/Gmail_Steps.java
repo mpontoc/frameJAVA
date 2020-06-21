@@ -5,7 +5,7 @@ import static br.com.mpontoc.commons.Selenium.cucumberReport;
 import static br.com.mpontoc.commons.Selenium.waitExist;
 import static br.com.mpontoc.commons.Selenium.waitExistClick;
 import static br.com.mpontoc.commons.Selenium.waitExistSet;
-import static br.com.mpontoc.commons.Selenium.waitSecunds;
+import static br.com.mpontoc.commons.Functions.waitSecunds;
 
 import java.util.List;
 
