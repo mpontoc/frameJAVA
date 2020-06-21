@@ -16,6 +16,7 @@ import org.zeroturnaround.zip.ZipUtil;
 public class Functions {
 
 	static Runtime rt = Runtime.getRuntime();
+	public static boolean feriado;
 
 	public static String verifyOS() {
 		String OS = null;
@@ -33,7 +34,7 @@ public class Functions {
 
 	public static Boolean verificaFeriado() {
 
-		Boolean feriado = null;
+		feriado = false;
 		String data = "";
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HHmmss");

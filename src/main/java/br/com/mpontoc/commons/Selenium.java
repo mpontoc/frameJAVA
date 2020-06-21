@@ -1,18 +1,23 @@
 package br.com.mpontoc.commons;
 
+import static br.com.mpontoc.commons.BaseTest.driver;
+
+import java.util.ArrayList;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.StartsActivity;
 import io.cucumber.core.api.Scenario;
-import org.apache.commons.collections.bag.SynchronizedSortedBag;
-import org.aspectj.bridge.IMessageHandler;
-import org.junit.Assert;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-import java.util.ArrayList;
-
-import static br.com.mpontoc.commons.BaseTest.driver;
 
 public class Selenium {
 
@@ -21,7 +26,6 @@ public class Selenium {
 	public static Boolean located = false;
 	public static Boolean[] assertObjReceved = null;
 	public static Boolean isFirstRun = null;
-	private static String[] packageActivities;
 
 	public static void printScreenAfterStep(Scenario scenario) {
 		if (isFirstRun == true) {
@@ -252,7 +256,7 @@ public class Selenium {
 			Boolean... assertObj) {
 		Actions actions = new Actions(driver);
 		WebElement element1 = null;
-		WebElement element2 = null;
+		//WebElement element2 = null;
 		assertObjReceved = assertObj;
 		located = false;
 		for (int i = 0; i <= timeout; i++) {
@@ -267,7 +271,7 @@ public class Selenium {
 				} catch (Exception e) {
 					;
 				}
-				element2 = findBy(link);
+				element1 = findBy(link);
 				waitExistClick(link, 2);
 				Log.log("Elemento " + link + " encontrado");
 				break;

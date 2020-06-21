@@ -13,8 +13,9 @@ import org.junit.runner.RunWith;
 //		tags = { " @apagarEmails " },
 //		tags = { " @TestUol1 " },
 //		tags = { " @consultaGoogle , @testesUOL " },
+		tags = { "  @testesUOL " },
 //		tags = { "@testAppium" },
-		tags = { "@loginApps" },
+//		tags = { "@loginApps" },
 		features = "src/test/resources/features", // local onde estão as features
 		glue = { 
 				"br.com.mpontoc.steps", // package onde estão os steps
