@@ -256,7 +256,7 @@ public class Selenium {
 			Boolean... assertObj) {
 		Actions actions = new Actions(driver);
 		WebElement element1 = null;
-		//WebElement element2 = null;
+		// WebElement element2 = null;
 		assertObjReceved = assertObj;
 		located = false;
 		for (int i = 0; i <= timeout; i++) {
@@ -449,7 +449,7 @@ public class Selenium {
 		Mobile.setPackageActivities(Mobile.getApp());
 
 		String[] packageAndActivity = Mobile.getPackageActivities();
-		
+
 		System.out.println(packageAndActivity[0]);
 		System.out.println(packageAndActivity[1]);
 

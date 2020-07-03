@@ -13,17 +13,19 @@ import org.junit.runner.RunWith;
 //		tags = { " @apagarEmails " },
 //		tags = { " @TestUol1 " },
 //		tags = { " @consultaGoogle , @testesUOL " },
-		tags = { "  @testesUOL " },
+//		tags = { "  @testesUOL " },
 //		tags = { "@testAppium" },
-//		tags = { "@loginApps" },
+		tags = { "@loginApps" },
 		features = "src/test/resources/features", // local onde estão as features
 		glue = { 
 				"br.com.mpontoc.steps", // package onde estão os steps
 				"br.com.mpontoc.conf" // chamada do spring
 		}, 
 		plugin = { "pretty", // imprime a descrição da feature
-				// "json:target/reports/results.json",
-				"html:target/cucumber-reports",
+				 "json:target/reports/results.json",
+				 "html:target/cucumber-reports",
+		//		 "com.epam.reportportal.cucumber.StepReporter",
+		//		 "com.epam.reportportal.cucumber.ScenarioReporter",
 				}, 
 		monochrome = true, // deixa o console só com fonte cor preta
 		dryRun = false, // ao rodar quando true percorre toda automação verificando se faltam passos

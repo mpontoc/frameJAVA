@@ -5,15 +5,19 @@ import static br.com.mpontoc.commons.Selenium.waitExistClick;
 import static br.com.mpontoc.commons.Selenium.waitExistGetText;
 import static br.com.mpontoc.commons.Selenium.waitExistSet;
 import static br.com.mpontoc.commons.Functions.waitSecunds;
+import static br.com.mpontoc.commons.MobileDriverInit.driverMobile;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import br.com.mpontoc.commons.Mobile;
+import br.com.mpontoc.commons.MobileDriverInit;
 import br.com.mpontoc.commons.Selenium;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.StartsActivity;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeStep;
@@ -109,7 +113,9 @@ public class MobileTests_Steps {
     	
     	Selenium.newApp(app);
     	waitSecunds(2);
-    	
+    	//driverMobile.pressKey(new KeyEvent(AndroidKey.HOME));    	
+    	driverMobile.pressKey(new KeyEvent(AndroidKey.MENU));    	
+    	waitSecunds(4);
     }
     
     @Quando("eu abro o app correspondente")
