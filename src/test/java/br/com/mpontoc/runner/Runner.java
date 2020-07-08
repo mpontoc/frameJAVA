@@ -1,9 +1,10 @@
 package br.com.mpontoc.runner;
 
-import br.com.mpontoc.commons.BaseTest;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
+
+import br.com.mpontoc.commons.utils.BaseTest;
 
 @RunWith(Cucumber.class)
 

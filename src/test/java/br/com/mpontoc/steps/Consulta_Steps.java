@@ -1,7 +1,7 @@
 package br.com.mpontoc.steps;
 
-import br.com.mpontoc.commons.Functions;
-import br.com.mpontoc.commons.Selenium;
+import br.com.mpontoc.commons.commands.SeleniumCommands;
+import br.com.mpontoc.commons.utils.Functions;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeStep;
@@ -10,21 +10,21 @@ import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import org.junit.Assert;
 
-import static br.com.mpontoc.commons.BaseTest.driver;
-import static br.com.mpontoc.commons.Selenium.waitExistClick;
-import static br.com.mpontoc.commons.Functions.waitSecunds;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.waitExistClick;
+import static br.com.mpontoc.commons.utils.BaseTest.driver;
+import static br.com.mpontoc.commons.utils.Functions.waitSecunds;
 
 public class Consulta_Steps {
 
     @BeforeStep("@consultaGoogle")
     public void reportClear(Scenario scenario) {
-        Selenium.isFirstRun = true;
+        SeleniumCommands.isFirstRun = true;
     }
 
     @AfterStep("@consultaGoogle")
     public void report(Scenario scenario) {
-        Selenium.printScreenAfterStep(scenario);
-        Selenium.writeReportAfterStep(scenario);
+        SeleniumCommands.printScreenAfterStep(scenario);
+        SeleniumCommands.writeReportAfterStep(scenario);
     }
 
     @Dado("que eu estou na tela do google")
@@ -47,7 +47,7 @@ public class Consulta_Steps {
 
         System.out.println(driver.getCurrentUrl().toString());
 
-        Selenium.cucumberReport("Este é o titulo da url " + driver.getCurrentUrl().toString());
+        SeleniumCommands.cucumberReport("Este é o titulo da url " + driver.getCurrentUrl().toString());
     }
 
     @Dado("que eu estou na tela do {string}")
@@ -65,7 +65,7 @@ public class Consulta_Steps {
     @Quando("eu busco por java e muito bom")
     public void eu_busco_por_java_e_muito_bom() {
         System.out.println("test1");
-        String textoObtido = Selenium.waitExistGetText("//h4[contains(.,'Economia') or (contains(.,'Líderes'))]", 4);
+        String textoObtido = SeleniumCommands.waitExistGetText("//h4[contains(.,'Economia') or (contains(.,'Líderes'))]", 4);
         System.out.println("Texto Obtido nos steps " + textoObtido);
     }
 

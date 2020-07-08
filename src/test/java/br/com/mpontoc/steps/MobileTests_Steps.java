@@ -1,19 +1,20 @@
 package br.com.mpontoc.steps;
 
-import static br.com.mpontoc.commons.BaseTest.driver;
-import static br.com.mpontoc.commons.Selenium.waitExistClick;
-import static br.com.mpontoc.commons.Selenium.waitExistGetText;
-import static br.com.mpontoc.commons.Selenium.waitExistSet;
-import static br.com.mpontoc.commons.Functions.waitSecunds;
-import static br.com.mpontoc.commons.MobileDriverInit.driverMobile;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.waitExistClick;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.waitExistGetText;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.waitExistSet;
+import static br.com.mpontoc.commons.driverFactory.MobileDriverInit.driverMobile;
+import static br.com.mpontoc.commons.utils.BaseTest.driver;
+import static br.com.mpontoc.commons.utils.Functions.waitSecunds;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import br.com.mpontoc.commons.Mobile;
-import br.com.mpontoc.commons.MobileDriverInit;
-import br.com.mpontoc.commons.Selenium;
+import br.com.mpontoc.commons.commands.AppiumCommands;
+import br.com.mpontoc.commons.commands.SeleniumCommands;
+import br.com.mpontoc.commons.driverFactory.MobileDriverInit;
+import br.com.mpontoc.commons.mobile.Mobile;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.StartsActivity;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -29,13 +30,13 @@ public class MobileTests_Steps {
 
     @BeforeStep("@testAppium")
     public void reportClear(Scenario scenario) {
-        Selenium.isFirstRun = true;
+        SeleniumCommands.isFirstRun = true;
     }
 
     @AfterStep("@testAppium")
     public void report(Scenario scenario) {
-        Selenium.printScreenAfterStep(scenario);
-        Selenium.writeReportAfterStep(scenario);
+        SeleniumCommands.printScreenAfterStep(scenario);
+        SeleniumCommands.writeReportAfterStep(scenario);
     }
 
     private String validaMenu;
@@ -44,31 +45,31 @@ public class MobileTests_Steps {
     @Dado("^que eu estou no device")
     public void que_eu_estou_no_device() throws Throwable {
     	  	
-    	Selenium.newApp("hiperCard");
+    	SeleniumCommands.newApp("hiperCard");
     	waitSecunds(2);
-    	Selenium.newApp("itauCard");
+    	SeleniumCommands.newApp("itauCard");
     	waitSecunds(2);
-    	Selenium.newApp("crediCard");
+    	SeleniumCommands.newApp("crediCard");
     	waitSecunds(2);
-    	Selenium.newApp("luiza");
+    	SeleniumCommands.newApp("luiza");
     	waitSecunds(2);
-    	Selenium.newApp("calc");
+    	SeleniumCommands.newApp("calc");
     	waitSecunds(2);
     	waitExistClick("5", 3);
-    	Selenium.newApp("ctAppium");
+    	SeleniumCommands.newApp("ctAppium");
     	waitSecunds(2);
     	waitSecunds(2);
 
-        validaMenu = Selenium.waitExistGetText("Formulário", 3, true);
+        validaMenu = SeleniumCommands.waitExistGetText("Formulário", 3, true);
         System.out.println("Texto obtido nos steps " + validaMenu);
-        Selenium.waitExistClick("//*[@text='Formulário']", 3, true);
+        SeleniumCommands.waitExistClick("//*[@text='Formulário']", 3, true);
 
     }
 
     @Quando("eu abro o app CT_Appium")
     public void eu_abro_o_app_CT_Appium() throws Throwable {
 
-        if (Selenium.waitExist("//android.widget.FrameLayout", 3, true) == true)
+        if (SeleniumCommands.waitExist("//android.widget.FrameLayout", 3, true) == true)
             System.out.println("Estou no app");
         else
             System.out.println("Problema para abrir o app");
@@ -111,11 +112,27 @@ public class MobileTests_Steps {
     	
     	System.out.println("Este é o app " + appAtual);
     	
-    	Selenium.newApp(app);
+    	SeleniumCommands.newApp(app);
     	waitSecunds(2);
-    	//driverMobile.pressKey(new KeyEvent(AndroidKey.HOME));    	
-    	driverMobile.pressKey(new KeyEvent(AndroidKey.MENU));    	
+    	AppiumCommands.pressKeyAndroidHome();
+    	waitSecunds(2);
+    	SeleniumCommands.newApp(app);
+    	waitSecunds(2);
+    	AppiumCommands.pressKeyAndroidHome();
+    	waitSecunds(2);
+    	SeleniumCommands.newApp(app);
+    	
+    	
+    	
+    	
+    	//driverMobile.pressKey(new KeyEvent(AndroidKey.HOME));  
+    	String[] menu = SeleniumCommands.getElements("android.widget.TextView");
+    	
+    	Assert.assertEquals(menu[0], "About...");
+    	
+    	//driverMobile.pressKey(new KeyEvent(AndroidKey.MENU));    	
     	waitSecunds(4);
+    	AppiumCommands.pressKeyAndroidHome();
     }
     
     @Quando("eu abro o app correspondente")

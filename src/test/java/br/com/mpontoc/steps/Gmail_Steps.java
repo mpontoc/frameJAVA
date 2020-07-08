@@ -1,11 +1,11 @@
 package br.com.mpontoc.steps;
 
-import static br.com.mpontoc.commons.BaseTest.driver;
-import static br.com.mpontoc.commons.Selenium.cucumberReport;
-import static br.com.mpontoc.commons.Selenium.waitExist;
-import static br.com.mpontoc.commons.Selenium.waitExistClick;
-import static br.com.mpontoc.commons.Selenium.waitExistSet;
-import static br.com.mpontoc.commons.Functions.waitSecunds;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.cucumberReport;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.waitExist;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.waitExistClick;
+import static br.com.mpontoc.commons.commands.SeleniumCommands.waitExistSet;
+import static br.com.mpontoc.commons.utils.BaseTest.driver;
+import static br.com.mpontoc.commons.utils.Functions.waitSecunds;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import br.com.mpontoc.commons.JsonFileReader;
-import br.com.mpontoc.commons.Log;
-import br.com.mpontoc.commons.Selenium;
+import br.com.mpontoc.commons.commands.SeleniumCommands;
+import br.com.mpontoc.commons.utils.JsonFileReader;
+import br.com.mpontoc.commons.utils.Log;
 import io.cucumber.core.api.Scenario;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeStep;
@@ -28,13 +28,13 @@ public class Gmail_Steps {
 
     @BeforeStep("@gmail")
     public void reportClear(Scenario scenario) {
-        Selenium.isFirstRun = true;
+        SeleniumCommands.isFirstRun = true;
     }
 
     @AfterStep("@gmail")
     public void report(Scenario scenario) {
-        Selenium.printScreenAfterStep(scenario);
-        Selenium.writeReportAfterStep(scenario);
+        SeleniumCommands.printScreenAfterStep(scenario);
+        SeleniumCommands.writeReportAfterStep(scenario);
     }
 
     @Dado("que eu estou na tela do gmail")
@@ -44,7 +44,7 @@ public class Gmail_Steps {
 
         waitSecunds(2);
 
-        Selenium.cucumberReport(driver.getCurrentUrl());
+        SeleniumCommands.cucumberReport(driver.getCurrentUrl());
         Log.log(driver.getCurrentUrl());
     }
 

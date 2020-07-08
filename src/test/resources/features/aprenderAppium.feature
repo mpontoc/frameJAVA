@@ -20,10 +20,11 @@ Quando eu abro o app correspondente
 Exemplos:
 
 |app       |
-|hipercard |
-|itaucard  |
-|credicard |
-|luizacard |
-|calc      |
+|ctAppium  |
+#|hipercard |
+#|itaucard  |
+#|credicard |
+#|luizacard |
+#|calc      |
 
 
